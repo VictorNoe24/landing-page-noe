@@ -1,0 +1,329 @@
+---
+import MobileNav from './MobileNav.jsx';
+
+const navItems = [
+	{ label: 'Inicio', href: '/#inicio' },
+	{ label: 'Nosotros', href: '/#nosotros' },
+	{ label: 'Servicios', href: '/#servicios' },
+	{ label: 'Galería', href: '/#galeria' },
+	{ label: 'Testimonios', href: '/#testimonios' },
+];
+
+const logoUrl = '/images/logo.png';
+---
+
+<header class="site-header">
+	<nav class="navbar" aria-label="Principal">
+		<a class="brand" href="/#inicio" aria-label="Noe Flores Avilés - inicio">
+			<img class="brand-logo" src={logoUrl} alt="Noe Flores Avilés" width="112" height="42" />
+		</a>
+
+		<div class="nav-actions">
+			<div class="nav-links">
+				{
+					navItems.map((item) => (
+						<a href={item.href}>
+							{item.label}
+						</a>
+					))
+				}
+			</div>
+
+			<a class="quote-button" href="/#cotizar">Cotizar Proyecto</a>
+		</div>
+
+		<MobileNav client:load navItems={navItems} logoUrl={logoUrl} />
+	</nav>
+</header>
+
+<style>
+	.site-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 50;
+		width: 100%;
+		background: #ffffff;
+		border-bottom: 1px solid #d9dde2;
+		box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+	}
+
+	.navbar {
+		width: min(1120px, calc(100% - 48px));
+		min-height: 80px;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 40px;
+	}
+
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		width: 148px;
+		text-decoration: none;
+	}
+
+	.brand-logo {
+		display: block;
+		width: 126px;
+		height: auto;
+		max-height: 48px;
+		flex: 0 0 auto;
+		object-fit: contain;
+	}
+
+	.nav-actions {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 32px;
+		flex: 1;
+	}
+
+	.nav-links {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 32px;
+	}
+
+	.nav-links a {
+		color: #2f3b4e;
+		font-size: 16px;
+		font-weight: 700;
+		line-height: 1;
+		text-decoration: none;
+		transition:
+			color 180ms ease,
+			transform 180ms ease;
+	}
+
+	.nav-links a:hover,
+	.nav-links a:focus-visible {
+		color: #004f5a;
+	}
+
+	.quote-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 44px;
+		padding: 0 24px;
+		border-radius: 8px;
+		background: #004f5a;
+		color: #ffffff;
+		font-size: 16px;
+		font-weight: 800;
+		text-decoration: none;
+		box-shadow: 0 3px 8px rgba(0, 79, 90, 0.28);
+		transition:
+			background 180ms ease,
+			transform 180ms ease,
+			box-shadow 180ms ease;
+		white-space: nowrap;
+	}
+
+	.quote-button:hover,
+	.quote-button:focus-visible {
+		background: #063f48;
+		box-shadow: 0 6px 14px rgba(0, 79, 90, 0.24);
+		transform: translateY(-1px);
+	}
+
+	@media (max-width: 860px) {
+		.navbar {
+			width: min(100% - 32px, 720px);
+			min-height: 76px;
+			gap: 16px;
+		}
+
+		.brand {
+			min-width: auto;
+		}
+
+		.brand-logo {
+			width: 104px;
+			max-height: 44px;
+			margin-left: 0;
+		}
+
+		.nav-actions {
+			gap: 16px;
+			min-width: 0;
+		}
+
+		.nav-links {
+			gap: 16px;
+			overflow-x: auto;
+			justify-content: flex-start;
+			padding: 8px 0;
+		}
+
+		.nav-links a {
+			font-size: 14px;
+			white-space: nowrap;
+		}
+
+		.quote-button {
+			min-height: 40px;
+			padding: 0 14px;
+			font-size: 14px;
+		}
+	}
+
+	@media (max-width: 760px) {
+		.navbar {
+			width: min(100% - 32px, 520px);
+			min-height: 78px;
+			display: flex;
+			padding: 0;
+		}
+
+		.nav-actions {
+			display: none;
+		}
+
+		.brand {
+			width: auto;
+		}
+
+		.brand-logo {
+			width: 96px;
+		}
+	}
+</style>
+
+<style is:global>
+	.mobile-menu-root {
+		display: none;
+	}
+
+	.mobile-menu-trigger {
+		display: grid;
+		width: 44px;
+		height: 44px;
+		place-items: center;
+		border: 0;
+		border-radius: 10px;
+		background: transparent;
+		color: #334155;
+		cursor: pointer;
+	}
+
+	.mobile-menu-trigger svg {
+		width: 24px;
+		height: 24px;
+	}
+
+	.mobile-menu-overlay {
+		position: fixed;
+		inset: 0;
+		z-index: 90;
+		background: rgba(15, 23, 42, 0.34);
+	}
+
+	.mobile-menu-content {
+		position: fixed;
+		top: 10px;
+		left: 16px;
+		right: 16px;
+		z-index: 100;
+		max-height: calc(100svh - 20px);
+		overflow-y: auto;
+		border: 1px solid #e2e8f0;
+		border-radius: 20px 20px 4px 4px;
+		background: #ffffff;
+		padding: 18px 12px 30px;
+		box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+	}
+
+	.mobile-menu-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		padding: 0 10px 16px;
+	}
+
+	.mobile-menu-logo {
+		display: inline-flex;
+		align-items: center;
+		text-decoration: none;
+	}
+
+	.mobile-menu-logo img {
+		display: block;
+		width: 96px;
+		height: auto;
+		object-fit: contain;
+	}
+
+	.mobile-menu-close {
+		display: grid;
+		width: 42px;
+		height: 42px;
+		place-items: center;
+		border: 0;
+		border-radius: 10px;
+		background: transparent;
+		color: #334155;
+		cursor: pointer;
+	}
+
+	.mobile-menu-close svg {
+		width: 24px;
+		height: 24px;
+	}
+
+	.mobile-menu-links {
+		display: grid;
+		gap: 6px;
+	}
+
+	.mobile-menu-links a {
+		display: flex;
+		min-height: 40px;
+		align-items: center;
+		border-radius: 6px;
+		color: #0f172a;
+		font-size: 14px;
+		font-weight: 750;
+		text-decoration: none;
+		padding: 0 10px;
+	}
+
+	.mobile-menu-links a:first-child {
+		background: #dcecee;
+		color: #005f6b;
+	}
+
+	.mobile-menu-cta {
+		display: flex;
+		min-height: 38px;
+		align-items: center;
+		justify-content: center;
+		margin-top: 24px;
+		border-radius: 6px;
+		background: #005f6b;
+		color: #ffffff;
+		font-size: 14px;
+		font-weight: 950;
+		text-decoration: none;
+	}
+
+	@media (min-width: 761px) {
+		.mobile-menu-root,
+		.mobile-menu-overlay,
+		.mobile-menu-content {
+			display: none;
+		}
+	}
+
+	@media (max-width: 760px) {
+		.mobile-menu-root {
+			display: block;
+		}
+	}
+</style>

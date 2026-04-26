@@ -1,0 +1,224 @@
+---
+import {
+	CheckCircledIcon,
+	ClockIcon,
+	HandIcon,
+	IdCardIcon,
+} from '@radix-ui/react-icons';
+
+const reasons = [
+	{
+		title: 'Puntualidad Absoluta',
+		description: 'Entregamos la obra en la fecha acordada. Sabemos que tu tiempo vale dinero y lo respetamos.',
+		icon: 'clock',
+	},
+	{
+		title: 'Presupuestos Justos',
+		description: 'No inventamos gastos a mitad de la obra. Te damos un presupuesto detallado desde el primer día.',
+		icon: 'budget',
+	},
+	{
+		title: 'Garantía de Calidad',
+		description: 'Usamos los mejores materiales y técnicas para asegurar que tu construcción dure toda la vida.',
+		icon: 'shield',
+	},
+	{
+		title: 'Atención Personalizada',
+		description: 'El Maestro siempre está al pendiente. Te mantenemos informado del avance de tu proyecto.',
+		icon: 'hand',
+	},
+];
+---
+
+<section class="why-section" aria-labelledby="why-title">
+	<div class="why-inner">
+		<div class="why-heading">
+			<p>Por qué elegirnos</p>
+			<h2 id="why-title">La diferencia entre una obra común y un trabajo bien hecho</h2>
+		</div>
+
+		<div class="why-grid">
+			{
+				reasons.map((reason) => (
+					<article class="why-card">
+						<div class="why-icon">
+							{reason.icon === 'clock' && <ClockIcon aria-hidden="true" />}
+							{reason.icon === 'budget' && <IdCardIcon aria-hidden="true" />}
+							{reason.icon === 'shield' && <CheckCircledIcon aria-hidden="true" />}
+							{reason.icon === 'hand' && <HandIcon aria-hidden="true" />}
+						</div>
+						<h3>{reason.title}</h3>
+						<p>{reason.description}</p>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.why-section {
+		position: relative;
+		overflow: hidden;
+		background:
+			radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.15), transparent 32%),
+			linear-gradient(110deg, #0b1329 0%, #0c1428 56%, #081a2a 100%);
+		color: #ffffff;
+		padding: 78px 0 80px;
+	}
+
+	.why-inner {
+		width: min(1216px, calc(100% - 48px));
+		margin: 0 auto;
+	}
+
+	.why-heading {
+		max-width: 760px;
+		margin: 0 auto 66px;
+		text-align: center;
+	}
+
+	.why-heading p {
+		margin: 0 0 14px;
+		color: #007f87;
+		font-size: 14px;
+		font-weight: 950;
+		letter-spacing: 0.1em;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.why-heading h2 {
+		margin: 0;
+		color: #ffffff;
+		font-size: clamp(36px, 3.25vw, 44px);
+		font-weight: 950;
+		line-height: 1.12;
+		letter-spacing: 0;
+		text-wrap: balance;
+	}
+
+	.why-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 32px;
+	}
+
+	.why-card {
+		min-height: 318px;
+		padding: 32px;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: 14px;
+		background: rgba(30, 41, 67, 0.72);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+		transition:
+			background 220ms ease,
+			border-color 220ms ease,
+			transform 220ms ease;
+	}
+
+	.why-card:hover,
+	.why-card:focus-within {
+		border-color: rgba(185, 220, 225, 0.28);
+		background: rgba(38, 49, 74, 0.88);
+		transform: translateY(-4px);
+	}
+
+	.why-icon {
+		display: grid;
+		width: 64px;
+		height: 64px;
+		place-items: center;
+		border-radius: 13px;
+		background: #ffffff;
+		color: #005f6b;
+	}
+
+	.why-icon svg {
+		width: 34px;
+		height: 34px;
+	}
+
+	.why-card h3 {
+		margin: 32px 0 0;
+		color: #ffffff;
+		font-size: 20px;
+		font-weight: 950;
+		line-height: 1.35;
+	}
+
+	.why-card p {
+		margin: 16px 0 0;
+		color: rgba(255, 255, 255, 0.86);
+		font-size: 15px;
+		font-weight: 650;
+		line-height: 1.62;
+	}
+
+	@media (max-width: 1080px) {
+		.why-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 620px) {
+		.why-section {
+			padding: 58px 0 62px;
+		}
+
+		.why-inner {
+			width: min(100% - 32px, 520px);
+		}
+
+		.why-heading {
+			margin-bottom: 38px;
+			text-align: left;
+		}
+
+		.why-heading h2 {
+			font-size: 34px;
+		}
+
+		.why-grid {
+			grid-template-columns: 1fr;
+			gap: 22px;
+		}
+
+		.why-card {
+			min-height: auto;
+			padding: 28px;
+		}
+
+		.why-card h3 {
+			margin-top: 24px;
+		}
+	}
+
+	@media (max-width: 430px) {
+		.why-section {
+			padding: 48px 0 54px;
+		}
+
+		.why-inner {
+			width: min(100% - 28px, 390px);
+		}
+
+		.why-heading h2 {
+			font-size: 30px;
+		}
+
+		.why-card {
+			padding: 22px;
+		}
+
+		.why-icon {
+			width: 56px;
+			height: 56px;
+		}
+
+		.why-icon svg {
+			width: 30px;
+			height: 30px;
+		}
+	}
+</style>

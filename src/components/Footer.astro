@@ -1,0 +1,304 @@
+---
+const logoUrl = '/images/logo.png';
+
+const quickLinks = [
+	{ label: 'Inicio', href: '/#inicio' },
+	{ label: 'Nosotros', href: '/#nosotros' },
+	{ label: 'Servicios', href: '/#servicios' },
+	{ label: 'Proyectos', href: '/proyectos' },
+	{ label: 'Testimonios', href: '/#testimonios' },
+];
+
+const services = [
+	'Albañilería en General',
+	'Remodelaciones',
+	'Acabados y Pintura',
+	'Plomería y Electricidad',
+	'Impermeabilización',
+];
+---
+
+<footer class="site-footer">
+	<div class="footer-inner">
+		<div class="footer-grid">
+			<div class="footer-brand">
+				<a class="footer-logo" href="/#inicio" aria-label="Noe Flores Avilés - inicio">
+					<img src={logoUrl} alt="Noe Flores Avilés" width="122" height="58" loading="lazy" />
+				</a>
+				<p>
+					Empresa mexicana especializada en albañilería, remodelaciones y acabados. Construimos patrimonio con calidad, honradez y puntualidad.
+				</p>
+			</div>
+
+			<nav class="footer-column" aria-label="Enlaces rápidos">
+				<h2>Enlaces Rápidos</h2>
+				<ul>
+					{
+						quickLinks.map((link) => (
+							<li>
+								<a href={link.href}>{link.label}</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+
+			<div class="footer-column">
+				<h2><span>Nuestros</span> Servicios</h2>
+				<ul>
+					{
+						services.map((service) => (
+							<li>{service}</li>
+						))
+					}
+				</ul>
+			</div>
+
+			<div class="footer-contact">
+				<h2>Contacto Directo</h2>
+				<div class="footer-contact-lines">
+					<p><strong>WhatsApp:</strong> +52 (55) 5555 5555</p>
+					<p><strong>Email:</strong> contacto@maestrodeobra.mx</p>
+					<p><strong>Área:</strong> CDMX y Estado de México</p>
+				</div>
+				<a class="whatsapp-cta" href="/#cotizar">Escríbenos por WhatsApp</a>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<p>© 2026 Noe Flores Aviles. Todos los derechos reservados.</p>
+			<div>
+				<a href="/#inicio">Política de Privacidad</a>
+				<a href="/#inicio">Términos de Servicio</a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		background: #0b1329;
+		color: #cbd5e1;
+		padding: 64px 0 30px;
+	}
+
+	.footer-inner {
+		width: min(1216px, calc(100% - 48px));
+		margin: 0 auto;
+	}
+
+	.footer-grid {
+		display: grid;
+		grid-template-columns: 1.1fr 1fr 1fr 1fr;
+		gap: 48px;
+	}
+
+	.footer-logo {
+		display: grid;
+		width: 122px;
+		height: 80px;
+		place-items: center;
+		overflow: hidden;
+		border-radius: 11px;
+		background: #ffffff;
+		text-decoration: none;
+	}
+
+	.footer-logo img {
+		display: block;
+		width: 88px;
+		height: auto;
+		object-fit: contain;
+	}
+
+	.footer-brand p {
+		max-width: 260px;
+		margin: 24px 0 0;
+		color: #cbd5e1;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.55;
+	}
+
+	.footer-column h2,
+	.footer-contact h2 {
+		margin: 0 0 18px;
+		padding-bottom: 12px;
+		border-bottom: 1px solid rgba(203, 213, 225, 0.14);
+		color: #ffffff;
+		font-size: 18px;
+		font-weight: 950;
+		line-height: 1.2;
+	}
+
+	.footer-column h2 span {
+		background: #007f87;
+		color: #ffffff;
+	}
+
+	.footer-column ul {
+		display: grid;
+		gap: 12px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.footer-column li,
+	.footer-column a,
+	.footer-contact-lines p,
+	.footer-bottom p,
+	.footer-bottom a {
+		color: #cbd5e1;
+		font-size: 14px;
+		font-weight: 650;
+		line-height: 1.4;
+		text-decoration: none;
+	}
+
+	.footer-column a {
+		transition: color 180ms ease;
+	}
+
+	.footer-column a:hover,
+	.footer-column a:focus-visible,
+	.footer-bottom a:hover,
+	.footer-bottom a:focus-visible {
+		color: #ffffff;
+	}
+
+	.footer-contact-lines {
+		display: grid;
+		gap: 9px;
+	}
+
+	.footer-contact-lines p {
+		margin: 0;
+	}
+
+	.footer-contact-lines strong {
+		color: #cbd5e1;
+		font-weight: 950;
+	}
+
+	.whatsapp-cta {
+		display: flex;
+		min-height: 36px;
+		align-items: center;
+		justify-content: center;
+		margin-top: 18px;
+		border-radius: 7px;
+		background: #25d366;
+		color: #ffffff;
+		font-size: 14px;
+		font-weight: 950;
+		text-decoration: none;
+		transition:
+			background 180ms ease,
+			transform 180ms ease;
+	}
+
+	.whatsapp-cta:hover,
+	.whatsapp-cta:focus-visible {
+		background: #20bd5a;
+		transform: translateY(-1px);
+	}
+
+	.footer-bottom {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
+		margin-top: 62px;
+		padding-top: 34px;
+		border-top: 1px solid rgba(203, 213, 225, 0.14);
+	}
+
+	.footer-bottom p {
+		margin: 0;
+		color: #aebbd0;
+	}
+
+	.footer-bottom div {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+	}
+
+	.footer-bottom a {
+		color: #aebbd0;
+	}
+
+	@media (max-width: 980px) {
+		.footer-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.footer-bottom {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.site-footer {
+			padding: 48px 0 28px;
+		}
+
+		.footer-inner {
+			width: min(100% - 32px, 520px);
+		}
+
+		.footer-grid {
+			grid-template-columns: 1fr;
+			gap: 34px;
+		}
+
+		.footer-brand p {
+			max-width: none;
+		}
+
+		.footer-bottom {
+			margin-top: 42px;
+			padding-top: 26px;
+		}
+
+		.footer-bottom div {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 10px;
+		}
+	}
+
+	@media (max-width: 430px) {
+		.site-footer {
+			padding: 42px 0 26px;
+		}
+
+		.footer-inner {
+			width: min(100% - 28px, 390px);
+		}
+
+		.footer-grid {
+			gap: 30px;
+		}
+
+		.footer-logo {
+			width: 112px;
+			height: 74px;
+		}
+
+		.footer-brand p,
+		.footer-column li,
+		.footer-column a,
+		.footer-contact-lines p,
+		.footer-bottom p,
+		.footer-bottom a {
+			font-size: 13px;
+		}
+
+		.whatsapp-cta {
+			min-height: 42px;
+		}
+	}
+</style>

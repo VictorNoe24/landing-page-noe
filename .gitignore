@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local environment variables
+.env.local
+
+# files agents
+AGENTS.md

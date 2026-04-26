@@ -1,0 +1,189 @@
+---
+import FaqAccordion from './FaqAccordion.jsx';
+---
+
+<section class="faq-section" aria-labelledby="faq-title">
+	<div class="faq-inner">
+		<div class="faq-heading">
+			<p>Preguntas Frecuentes</p>
+			<h2 id="faq-title">Resolvemos tus dudas</h2>
+		</div>
+
+		<FaqAccordion client:visible />
+	</div>
+</section>
+
+<style is:global>
+	.faq-section {
+		background: #f8fafc;
+		color: #0f172a;
+		padding: 78px 0 80px;
+	}
+
+	.faq-inner {
+		width: min(832px, calc(100% - 48px));
+		margin: 0 auto;
+	}
+
+	.faq-heading {
+		margin-bottom: 48px;
+		text-align: center;
+	}
+
+	.faq-heading p {
+		margin: 0 0 14px;
+		color: #005f6b;
+		font-size: 14px;
+		font-weight: 950;
+		letter-spacing: 0.09em;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.faq-heading h2 {
+		margin: 0;
+		color: #0f172a;
+		font-size: clamp(36px, 3.2vw, 44px);
+		font-weight: 950;
+		line-height: 1.15;
+		letter-spacing: 0;
+	}
+
+	.faq-accordion {
+		display: grid;
+		gap: 16px;
+	}
+
+	.faq-item {
+		overflow: hidden;
+		border: 1px solid #dfe5eb;
+		border-radius: 9px;
+		background: #ffffff;
+		box-shadow: 0 2px 5px rgba(15, 23, 42, 0.08);
+	}
+
+	.faq-trigger {
+		display: flex;
+		width: 100%;
+		min-height: 68px;
+		align-items: center;
+		justify-content: space-between;
+		gap: 18px;
+		border: 0;
+		background: transparent;
+		color: #0f172a;
+		cursor: pointer;
+		padding: 0 24px;
+		text-align: left;
+		font: inherit;
+		font-size: 18px;
+		font-weight: 950;
+		line-height: 1.25;
+	}
+
+	.faq-trigger svg {
+		width: 18px;
+		height: 18px;
+		flex: 0 0 auto;
+		color: #005f6b;
+		transition: transform 180ms ease;
+	}
+
+	.faq-trigger[data-state='open'] svg {
+		transform: rotate(180deg);
+	}
+
+	.faq-content {
+		overflow: hidden;
+		border-top: 1px solid #eef2f7;
+		color: #475569;
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 1.65;
+	}
+
+	.faq-content[data-state='open'] {
+		animation: faq-slide-down 220ms ease;
+	}
+
+	.faq-content[data-state='closed'] {
+		animation: faq-slide-up 180ms ease;
+	}
+
+	.faq-content-inner {
+		padding: 18px 24px 20px;
+	}
+
+	.faq-content p {
+		margin: 0;
+	}
+
+	@keyframes faq-slide-down {
+		from {
+			height: 0;
+		}
+
+		to {
+			height: var(--radix-accordion-content-height);
+		}
+	}
+
+	@keyframes faq-slide-up {
+		from {
+			height: var(--radix-accordion-content-height);
+		}
+
+		to {
+			height: 0;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.faq-section {
+			padding: 58px 0 62px;
+		}
+
+		.faq-inner {
+			width: min(100% - 32px, 520px);
+		}
+
+		.faq-heading {
+			margin-bottom: 34px;
+			text-align: left;
+		}
+
+		.faq-heading h2 {
+			font-size: 34px;
+		}
+
+		.faq-trigger {
+			min-height: 62px;
+			padding: 0 18px;
+			font-size: 16px;
+		}
+
+		.faq-content-inner {
+			padding: 16px 18px 18px;
+		}
+	}
+
+	@media (max-width: 430px) {
+		.faq-section {
+			padding: 48px 0 54px;
+		}
+
+		.faq-inner {
+			width: min(100% - 28px, 390px);
+		}
+
+		.faq-heading h2 {
+			font-size: 30px;
+		}
+
+		.faq-trigger {
+			min-height: 58px;
+			padding: 0 16px;
+			font-size: 15px;
+		}
+	}
+</style>

@@ -1,0 +1,274 @@
+---
+import {
+	CalendarIcon,
+	ChatBubbleIcon,
+	FileTextIcon,
+	HobbyKnifeIcon,
+	HomeIcon,
+} from '@radix-ui/react-icons';
+
+const steps = [
+	{
+		title: '1. Contáctanos',
+		description: 'Llámanos o escríbenos por WhatsApp. Cuéntanos qué necesitas.',
+		icon: ChatBubbleIcon,
+	},
+	{
+		title: '2. Visita Técnica',
+		description: 'Visitamos el lugar sin compromiso para evaluar el área y tomar medidas exactas.',
+		icon: CalendarIcon,
+	},
+	{
+		title: '3. Presupuesto',
+		description: 'Te entregamos una cotización detallada de materiales y mano de obra, transparente y justa.',
+		icon: FileTextIcon,
+	},
+	{
+		title: '4. Manos a la Obra',
+		description: 'Iniciamos en la fecha acordada, trabajando con limpieza, orden y seguridad.',
+		icon: HobbyKnifeIcon,
+	},
+	{
+		title: '5. Entrega Limpia',
+		description: 'Entregamos tu proyecto terminado, impecable y listo para disfrutar.',
+		icon: HomeIcon,
+	},
+];
+---
+
+<section class="process-section" aria-labelledby="process-title">
+	<div class="process-inner">
+		<div class="process-heading">
+			<p>Cómo Trabajamos</p>
+			<h2 id="process-title">Un proceso simple y sin estrés</h2>
+			<span>
+				Nos gusta hacer las cosas bien desde el principio. Nuestro método asegura que siempre sepas en qué etapa está tu proyecto.
+			</span>
+		</div>
+
+		<div class="process-timeline">
+			<div class="process-line" aria-hidden="true"></div>
+			{
+				steps.map((step) => {
+					const Icon = step.icon;
+
+					return (
+						<article class="process-step">
+							<div class="process-icon">
+								<Icon aria-hidden="true" />
+							</div>
+							<h3>{step.title}</h3>
+							<p>{step.description}</p>
+						</article>
+					);
+				})
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.process-section {
+		background: #f8fafc;
+		color: #0f172a;
+		padding: 88px 0 86px;
+	}
+
+	.process-inner {
+		width: min(1216px, calc(100% - 48px));
+		margin: 0 auto;
+	}
+
+	.process-heading {
+		max-width: 780px;
+		margin: 0 auto 68px;
+		text-align: center;
+	}
+
+	.process-heading p {
+		margin: 0 0 14px;
+		color: #005f6b;
+		font-size: 14px;
+		font-weight: 950;
+		letter-spacing: 0.09em;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.process-heading h2 {
+		margin: 0;
+		color: #0f172a;
+		font-size: clamp(36px, 3.2vw, 44px);
+		font-weight: 950;
+		line-height: 1.15;
+		letter-spacing: 0;
+	}
+
+	.process-heading span {
+		display: block;
+		margin: 20px auto 0;
+		color: #475569;
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 1.55;
+	}
+
+	.process-timeline {
+		position: relative;
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 28px;
+		align-items: start;
+	}
+
+	.process-line {
+		position: absolute;
+		top: 48px;
+		left: 40px;
+		right: 40px;
+		height: 4px;
+		background: #e2e8f0;
+	}
+
+	.process-step {
+		position: relative;
+		z-index: 1;
+		text-align: center;
+	}
+
+	.process-icon {
+		display: grid;
+		width: 96px;
+		height: 96px;
+		margin: 0 auto 28px;
+		place-items: center;
+		border: 4px solid #b9dce1;
+		border-radius: 999px;
+		background: #ffffff;
+		color: #005f6b;
+		box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+	}
+
+	.process-icon svg {
+		width: 28px;
+		height: 28px;
+	}
+
+	.process-step h3 {
+		margin: 0;
+		color: #0f172a;
+		font-size: 20px;
+		font-weight: 950;
+		line-height: 1.25;
+	}
+
+	.process-step p {
+		max-width: 210px;
+		margin: 16px auto 0;
+		color: #475569;
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 1.55;
+	}
+
+	@media (max-width: 980px) {
+		.process-timeline {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 40px 28px;
+		}
+
+		.process-line {
+			display: none;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.process-section {
+			padding: 58px 0 62px;
+		}
+
+		.process-inner {
+			width: min(100% - 32px, 520px);
+		}
+
+		.process-heading {
+			margin-bottom: 42px;
+			text-align: left;
+		}
+
+		.process-heading h2 {
+			font-size: 34px;
+		}
+
+		.process-heading span {
+			font-size: 16px;
+		}
+
+		.process-timeline {
+			grid-template-columns: 1fr;
+			gap: 26px;
+		}
+
+		.process-step {
+			display: grid;
+			grid-template-columns: 72px 1fr;
+			gap: 16px;
+			text-align: left;
+		}
+
+		.process-icon {
+			width: 72px;
+			height: 72px;
+			margin: 0;
+			border-width: 3px;
+		}
+
+		.process-icon svg {
+			width: 24px;
+			height: 24px;
+		}
+
+		.process-step h3 {
+			align-self: end;
+			font-size: 20px;
+		}
+
+		.process-step p {
+			grid-column: 2;
+			max-width: none;
+			margin: -6px 0 0;
+		}
+	}
+
+	@media (max-width: 430px) {
+		.process-section {
+			padding: 48px 0 54px;
+		}
+
+		.process-inner {
+			width: min(100% - 28px, 390px);
+		}
+
+		.process-heading h2 {
+			font-size: 30px;
+		}
+
+		.process-step {
+			grid-template-columns: 62px 1fr;
+			gap: 14px;
+		}
+
+		.process-icon {
+			width: 62px;
+			height: 62px;
+		}
+
+		.process-step h3 {
+			font-size: 18px;
+		}
+
+		.process-step p {
+			font-size: 14px;
+		}
+	}
+</style>
