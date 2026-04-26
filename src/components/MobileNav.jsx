@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
+import { withBase } from '../utils/withBase.js';
 
 export default function MobileNav({ navItems, logoUrl }) {
 	return (
@@ -15,7 +16,7 @@ export default function MobileNav({ navItems, logoUrl }) {
 				<Dialog.Content className="mobile-menu-content" aria-label="Menú principal">
 					<div className="mobile-menu-head">
 						<Dialog.Close asChild>
-							<a className="mobile-menu-logo" href="/#inicio" aria-label="Noe Flores Avilés - inicio">
+							<a className="mobile-menu-logo" href={withBase('/#inicio')} aria-label="Noe Flores Avilés - inicio">
 								<img src={logoUrl} alt="Noe Flores Avilés" width="112" height="42" />
 							</a>
 						</Dialog.Close>
@@ -34,7 +35,7 @@ export default function MobileNav({ navItems, logoUrl }) {
 					</nav>
 
 					<Dialog.Close asChild>
-						<a className="mobile-menu-cta" href="/#cotizar">
+						<a className="mobile-menu-cta" href={withBase('/#cotizar')}>
 							Cotizar Proyecto
 						</a>
 					</Dialog.Close>

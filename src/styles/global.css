@@ -6,6 +6,23 @@ html {
 	-webkit-text-size-adjust: 100%;
 }
 
+html,
+body,
+main,
+section,
+header,
+footer,
+div,
+article {
+	max-width: 100%;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 button,
 a,
 input,

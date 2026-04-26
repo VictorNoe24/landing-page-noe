@@ -1,12 +1,17 @@
 ---
-const logoUrl = '/images/logo.png';
+import { withBase } from '../utils/withBase.js';
+
+const logoUrl = withBase('/images/logo.png');
+const homeHref = withBase('/#inicio');
+const quoteHref = withBase('/#cotizar');
+const projectsHref = withBase('/proyectos');
 
 const quickLinks = [
-	{ label: 'Inicio', href: '/#inicio' },
-	{ label: 'Nosotros', href: '/#nosotros' },
-	{ label: 'Servicios', href: '/#servicios' },
-	{ label: 'Proyectos', href: '/proyectos' },
-	{ label: 'Testimonios', href: '/#testimonios' },
+	{ label: 'Inicio', href: homeHref },
+	{ label: 'Nosotros', href: withBase('/#nosotros') },
+	{ label: 'Servicios', href: withBase('/#servicios') },
+	{ label: 'Proyectos', href: projectsHref },
+	{ label: 'Testimonios', href: withBase('/#testimonios') },
 ];
 
 const services = [
@@ -22,7 +27,7 @@ const services = [
 	<div class="footer-inner">
 		<div class="footer-grid">
 			<div class="footer-brand">
-				<a class="footer-logo" href="/#inicio" aria-label="Noe Flores Avilés - inicio">
+				<a class="footer-logo" href={homeHref} aria-label="Noe Flores Avilés - inicio">
 					<img src={logoUrl} alt="Noe Flores Avilés" width="122" height="58" loading="lazy" />
 				</a>
 				<p>
@@ -44,7 +49,7 @@ const services = [
 			</nav>
 
 			<div class="footer-column">
-				<h2><span>Nuestros</span> Servicios</h2>
+				<h2>Nuestros Servicios</h2>
 				<ul>
 					{
 						services.map((service) => (
@@ -61,15 +66,15 @@ const services = [
 					<p><strong>Email:</strong> contacto@maestrodeobra.mx</p>
 					<p><strong>Área:</strong> CDMX y Estado de México</p>
 				</div>
-				<a class="whatsapp-cta" href="/#cotizar">Escríbenos por WhatsApp</a>
+				<a class="whatsapp-cta" href={quoteHref}>Escríbenos por WhatsApp</a>
 			</div>
 		</div>
 
 		<div class="footer-bottom">
 			<p>© 2026 Noe Flores Aviles. Todos los derechos reservados.</p>
 			<div>
-				<a href="/#inicio">Política de Privacidad</a>
-				<a href="/#inicio">Términos de Servicio</a>
+				<a href={homeHref}>Política de Privacidad</a>
+				<a href={homeHref}>Términos de Servicio</a>
 			</div>
 		</div>
 	</div>
@@ -246,7 +251,7 @@ const services = [
 		}
 
 		.footer-inner {
-			width: min(100% - 32px, 520px);
+			width: min(calc(100% - 32px), 520px);
 		}
 
 		.footer-grid {
@@ -276,7 +281,7 @@ const services = [
 		}
 
 		.footer-inner {
-			width: min(100% - 28px, 390px);
+			width: calc(100% - 24px);
 		}
 
 		.footer-grid {

@@ -1,5 +1,8 @@
 ---
 import PortfolioGallery from './PortfolioGallery.jsx';
+import { withBase } from '../../../utils/withBase.js';
+
+const projectsHref = withBase('/proyectos');
 ---
 
 <section id="galeria" class="portfolio-section">
@@ -13,7 +16,7 @@ import PortfolioGallery from './PortfolioGallery.jsx';
 				</span>
 			</div>
 
-			<a class="portfolio-all-link" href="/proyectos">
+			<a class="portfolio-all-link" href={projectsHref}>
 				Ver todos los proyectos
 				<span class="portfolio-all-icon" aria-hidden="true">→</span>
 			</a>
@@ -489,7 +492,7 @@ import PortfolioGallery from './PortfolioGallery.jsx';
 		}
 
 		.portfolio-inner {
-			width: min(100% - 32px, 520px);
+			width: calc(100% - 24px);
 		}
 
 		.portfolio-heading {
@@ -554,7 +557,7 @@ import PortfolioGallery from './PortfolioGallery.jsx';
 		}
 
 		.portfolio-inner {
-			width: min(100% - 28px, 390px);
+			width: calc(100% - 20px);
 		}
 
 		.portfolio-heading h2 {

@@ -2,21 +2,27 @@
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 import Navbar from '../components/Navbar.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { withBase } from '../utils/withBase.js';
+
+const faviconSvg = withBase('/favicon.svg');
+const faviconIco = withBase('/favicon.ico');
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<link rel="icon" type="image/svg+xml" href={faviconSvg} />
+		<link rel="icon" href={faviconIco} />
 		<meta name="generator" content={Astro.generator} />
 		<title>Noe Flores Avilés</title>
 	</head>
 	<body>
 		<Navbar />
 		<slot />
+		<WhatsAppFloat />
 		<Footer />
 	</body>
 </html>
@@ -35,12 +41,13 @@ import Navbar from '../components/Navbar.astro';
 	body {
 		margin: 0;
 		width: 100%;
+		max-width: 100%;
 		min-height: 100%;
 	}
 
 	body {
 		padding-top: 80px;
-		overflow-x: hidden;
+		overflow-x: clip;
 	}
 
 	* {

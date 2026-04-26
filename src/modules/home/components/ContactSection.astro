@@ -247,6 +247,9 @@ const serviceOptions = [
 	.quote-form select,
 	.quote-form textarea {
 		display: block;
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
 		border: 1px solid #cbd5e1;
 		border-radius: 8px;
 		background: #f8fafc;
@@ -295,6 +298,7 @@ const serviceOptions = [
 	.quote-form button {
 		display: inline-flex;
 		width: 100%;
+		max-width: 100%;
 		min-height: 60px;
 		align-items: center;
 		justify-content: center;
@@ -352,7 +356,7 @@ const serviceOptions = [
 		}
 
 		.contact-inner {
-			width: min(100% - 32px, 520px);
+			width: calc(100% - 24px);
 			gap: 38px;
 		}
 
@@ -384,7 +388,7 @@ const serviceOptions = [
 		}
 
 		.contact-inner {
-			width: min(100% - 28px, 390px);
+			width: calc(100% - 20px);
 		}
 
 		.contact-copy h2 {

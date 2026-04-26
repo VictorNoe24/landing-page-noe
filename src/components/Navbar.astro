@@ -1,20 +1,23 @@
 ---
 import MobileNav from './MobileNav.jsx';
+import { withBase } from '../utils/withBase.js';
 
 const navItems = [
-	{ label: 'Inicio', href: '/#inicio' },
-	{ label: 'Nosotros', href: '/#nosotros' },
-	{ label: 'Servicios', href: '/#servicios' },
-	{ label: 'Galería', href: '/#galeria' },
-	{ label: 'Testimonios', href: '/#testimonios' },
+	{ label: 'Inicio', href: withBase('/#inicio') },
+	{ label: 'Nosotros', href: withBase('/#nosotros') },
+	{ label: 'Servicios', href: withBase('/#servicios') },
+	{ label: 'Galería', href: withBase('/#galeria') },
+	{ label: 'Testimonios', href: withBase('/#testimonios') },
 ];
 
-const logoUrl = '/images/logo.png';
+const logoUrl = withBase('/images/logo.png');
+const homeHref = withBase('/#inicio');
+const quoteHref = withBase('/#cotizar');
 ---
 
 <header class="site-header">
 	<nav class="navbar" aria-label="Principal">
-		<a class="brand" href="/#inicio" aria-label="Noe Flores Avilés - inicio">
+		<a class="brand" href={homeHref} aria-label="Noe Flores Avilés - inicio">
 			<img class="brand-logo" src={logoUrl} alt="Noe Flores Avilés" width="112" height="42" />
 		</a>
 
@@ -29,7 +32,7 @@ const logoUrl = '/images/logo.png';
 				}
 			</div>
 
-			<a class="quote-button" href="/#cotizar">Cotizar Proyecto</a>
+			<a class="quote-button" href={quoteHref}>Cotizar Proyecto</a>
 		</div>
 
 		<MobileNav client:load navItems={navItems} logoUrl={logoUrl} />
@@ -134,7 +137,7 @@ const logoUrl = '/images/logo.png';
 
 	@media (max-width: 860px) {
 		.navbar {
-			width: min(100% - 32px, 720px);
+			width: min(calc(100% - 32px), 720px);
 			min-height: 76px;
 			gap: 16px;
 		}
@@ -175,7 +178,7 @@ const logoUrl = '/images/logo.png';
 
 	@media (max-width: 760px) {
 		.navbar {
-			width: min(100% - 32px, 520px);
+			width: calc(100% - 24px);
 			min-height: 78px;
 			display: flex;
 			padding: 0;
