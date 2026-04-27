@@ -9,14 +9,14 @@ const faviconPng = withBase('/images/logo.png');
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<script is:inline>
 			(() => {
 				const storedTheme = window.localStorage.getItem('theme');
-				const theme = storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : 'dark';
+				const theme = storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : 'light';
 
 				document.documentElement.dataset.theme = theme;
 			})();
