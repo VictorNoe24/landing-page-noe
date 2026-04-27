@@ -31,7 +31,7 @@ import PortfolioGallery from './components/PortfolioGallery.jsx';
 
 <style>
 	.projects-page {
-		background: #f8fafc;
+		background: var(--color-surface-alt);
 		min-height: 100svh;
 	}
 
@@ -52,8 +52,8 @@ import PortfolioGallery from './components/PortfolioGallery.jsx';
 		margin: 0 auto 26px;
 		place-items: center;
 		border-radius: 999px;
-		background: #b9dce1;
-		color: #005f6b;
+		background: var(--color-brand-soft);
+		color: var(--color-brand);
 	}
 
 	.projects-icon svg {
@@ -63,7 +63,7 @@ import PortfolioGallery from './components/PortfolioGallery.jsx';
 
 	.projects-hero h1 {
 		margin: 0;
-		color: #0f172a;
+		color: var(--color-text);
 		font-size: clamp(42px, 4vw, 56px);
 		font-weight: 950;
 		line-height: 1.12;
@@ -73,7 +73,7 @@ import PortfolioGallery from './components/PortfolioGallery.jsx';
 	.projects-hero p {
 		max-width: 760px;
 		margin: 22px auto 0;
-		color: #475569;
+		color: var(--color-text-muted);
 		font-size: 18px;
 		font-weight: 500;
 		line-height: 1.6;
@@ -144,10 +144,10 @@ import PortfolioGallery from './components/PortfolioGallery.jsx';
 
 	.projects-page .project-filters button {
 		min-height: 44px;
-		border: 1px solid #dbe2ea;
+		border: 1px solid var(--color-border-muted);
 		border-radius: 999px;
-		background: #ffffff;
-		color: #475569;
+		background: var(--color-surface);
+		color: var(--color-text-muted);
 		cursor: pointer;
 		font-size: 14px;
 		font-weight: 850;
@@ -162,10 +162,10 @@ import PortfolioGallery from './components/PortfolioGallery.jsx';
 	.projects-page .project-filters button:hover,
 	.projects-page .project-filters button:focus-visible,
 	.projects-page .project-filters button[data-active='true'] {
-		border-color: #005f6b;
-		background: #005f6b;
-		color: #ffffff;
-		box-shadow: 0 8px 18px rgba(0, 95, 107, 0.2);
+		border-color: var(--color-brand);
+		background: var(--color-brand);
+		color: var(--color-white);
+		box-shadow: 0 8px 18px color-mix(in srgb, var(--color-brand) 24%, transparent);
 	}
 
 	.projects-page .portfolio-gallery {
@@ -183,8 +183,8 @@ import PortfolioGallery from './components/PortfolioGallery.jsx';
 		overflow: hidden;
 		border: 0;
 		border-radius: 10px;
-		background: #0f172a;
-		box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
+		background: var(--color-surface-dark);
+		box-shadow: 0 12px 24px var(--color-shadow-soft);
 		cursor: pointer;
 		padding: 0;
 		text-align: left;

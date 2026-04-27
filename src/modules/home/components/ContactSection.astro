@@ -118,8 +118,8 @@ const serviceOptions = [
 
 <style>
 	.contact-section {
-		background: #ffffff;
-		color: #0f172a;
+		background: var(--color-surface);
+		color: var(--color-text);
 		padding: 76px 0 86px;
 	}
 
@@ -134,7 +134,7 @@ const serviceOptions = [
 
 	.contact-eyebrow {
 		margin: 0 0 14px;
-		color: #005f6b;
+		color: var(--color-brand);
 		font-size: 14px;
 		font-weight: 950;
 		letter-spacing: 0.09em;
@@ -145,7 +145,7 @@ const serviceOptions = [
 	.contact-copy h2 {
 		max-width: 620px;
 		margin: 0;
-		color: #0f172a;
+		color: var(--color-text);
 		font-size: clamp(36px, 3.2vw, 44px);
 		font-weight: 950;
 		line-height: 1.15;
@@ -191,7 +191,7 @@ const serviceOptions = [
 
 	.contact-item h3 {
 		margin: 4px 0 8px;
-		color: #0f172a;
+		color: var(--color-text);
 		font-size: 18px;
 		font-weight: 950;
 		line-height: 1.2;
@@ -209,15 +209,15 @@ const serviceOptions = [
 		width: 100%;
 		max-width: 576px;
 		padding: 32px;
-		border: 1px solid #e5eaf0;
+		border: 1px solid var(--color-border-soft);
 		border-radius: 14px;
 		background: var(--color-surface-alt);
-		box-shadow: 0 16px 30px rgba(15, 23, 42, 0.12);
+		box-shadow: 0 16px 30px var(--color-shadow-strong);
 	}
 
 	.quote-form h3 {
 		margin: 0 0 26px;
-		color: #0f172a;
+		color: var(--color-text);
 		font-size: 28px;
 		font-weight: 950;
 		line-height: 1.2;
@@ -231,7 +231,7 @@ const serviceOptions = [
 	}
 
 	.quote-form label span {
-		color: #334155;
+		color: var(--color-text-muted);
 		font-size: 14px;
 		font-weight: 850;
 		line-height: 1.2;
@@ -251,7 +251,7 @@ const serviceOptions = [
 		width: 100%;
 		max-width: 100%;
 		min-width: 0;
-		border: 1px solid #cbd5e1;
+		border: 1px solid var(--color-border-muted);
 		border-radius: 8px;
 		background: var(--color-surface-alt);
 		color: var(--color-text);
@@ -285,15 +285,15 @@ const serviceOptions = [
 
 	.quote-form input::placeholder,
 	.quote-form textarea::placeholder {
-		color: #7b8492;
+		color: var(--color-text-subtle);
 	}
 
 	.quote-form input:focus,
 	.quote-form select:focus,
 	.quote-form textarea:focus {
-		border-color: #005f6b;
-		background: #ffffff;
-		box-shadow: 0 0 0 3px rgba(0, 95, 107, 0.12);
+		border-color: var(--color-brand);
+		background: var(--color-surface);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand) 16%, transparent);
 	}
 
 	.quote-form button {
@@ -306,13 +306,13 @@ const serviceOptions = [
 		gap: 12px;
 		border: 0;
 		border-radius: 7px;
-		background: #005f6b;
-		color: #ffffff;
+		background: var(--color-brand);
+		color: var(--color-white);
 		cursor: pointer;
 		font: inherit;
 		font-size: 18px;
 		font-weight: 950;
-		box-shadow: 0 8px 16px rgba(0, 95, 107, 0.22);
+		box-shadow: 0 8px 16px color-mix(in srgb, var(--color-brand) 26%, transparent);
 		transition:
 			background 180ms ease,
 			transform 180ms ease;
@@ -320,7 +320,7 @@ const serviceOptions = [
 
 	.quote-form button:hover,
 	.quote-form button:focus-visible {
-		background: #007481;
+		background: color-mix(in srgb, var(--color-brand) 88%, #000000);
 		transform: translateY(-1px);
 	}
 
