@@ -20,7 +20,7 @@ const values = [
 
 <section id="nosotros" class="about-section">
 	<div class="about-inner">
-		<div class="about-media">
+		<div class="about-media" data-scroll-animate="fade-left">
 			<div class="experience-card">
 				<div class="experience-icon">
 					<svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
@@ -45,7 +45,7 @@ const values = [
 			<div class="media-accent" aria-hidden="true"></div>
 		</div>
 
-		<div class="about-content">
+		<div class="about-content" data-scroll-animate="fade-right" data-scroll-delay="100ms">
 			<p class="section-eyebrow">Sobre Nosotros</p>
 			<h2>El Maestro de Obra que tu proyecto necesita</h2>
 
@@ -59,8 +59,8 @@ const values = [
 
 			<div class="value-list">
 				{
-					values.map((item) => (
-						<div class="value-item">
+					values.map((item, index) => (
+						<div class="value-item" data-scroll-animate="fade-up" data-scroll-delay={`${220 + index * 110}ms`}>
 							<div class="value-icon">
 								{
 									item.icon === 'target' && (
@@ -135,8 +135,9 @@ const values = [
 		height: 700px;
 		max-width: 100%;
 		overflow: hidden;
-		border-radius: 10px;
+		border-radius: 18px;
 		background: #d97745;
+		box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
 	}
 
 	.image-frame img {
@@ -154,7 +155,7 @@ const values = [
 		z-index: 1;
 		width: 390px;
 		height: 462px;
-		border-radius: 12px;
+		border-radius: 18px;
 		background: #005f6b;
 	}
 
@@ -172,7 +173,7 @@ const values = [
 		border-left: 4px solid #071225;
 		border-radius: 12px;
 		background: #ffffff;
-		box-shadow: 0 18px 34px rgba(15, 23, 42, 0.14);
+		box-shadow: 0 22px 40px rgba(15, 23, 42, 0.16);
 	}
 
 	.experience-icon,
@@ -217,6 +218,19 @@ const values = [
 		min-width: 0;
 		max-width: 640px;
 		padding-top: 6px;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.about-media[data-scroll-animate],
+		.about-content[data-scroll-animate] {
+			opacity: 0;
+			will-change: opacity, transform, filter;
+		}
+
+		.about-media[data-scroll-animate].is-scroll-visible,
+		.about-content[data-scroll-animate].is-scroll-visible {
+			opacity: 1;
+		}
 	}
 
 	.section-eyebrow {
@@ -294,6 +308,17 @@ const values = [
 		line-height: 1.45;
 	}
 
+	@media (prefers-reduced-motion: no-preference) {
+		.value-item[data-scroll-animate] {
+			opacity: 0;
+			will-change: opacity, transform, filter;
+		}
+
+		.value-item[data-scroll-animate].is-scroll-visible {
+			opacity: 1;
+		}
+	}
+
 	@media (max-width: 1080px) {
 		.about-inner {
 			grid-template-columns: 1fr;
@@ -329,7 +354,7 @@ const values = [
 
 		.image-frame {
 			height: 420px;
-			border-radius: 9px;
+			border-radius: 14px;
 		}
 
 		.media-accent {
@@ -337,6 +362,7 @@ const values = [
 			bottom: -18px;
 			width: 62%;
 			height: 180px;
+			border-radius: 14px;
 		}
 
 		.experience-card {
@@ -383,6 +409,7 @@ const values = [
 
 		.image-frame {
 			height: 330px;
+			border-radius: 12px;
 		}
 
 		.media-accent {
@@ -390,6 +417,7 @@ const values = [
 			bottom: -12px;
 			width: 60%;
 			height: 120px;
+			border-radius: 12px;
 		}
 
 		.experience-card {

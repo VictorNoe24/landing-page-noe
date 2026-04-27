@@ -31,16 +31,18 @@ const reasons = [
 ---
 
 <section class="why-section" aria-labelledby="why-title">
+	<div class="why-orb why-orb-right" aria-hidden="true"></div>
+	<div class="why-orb why-orb-left" aria-hidden="true"></div>
 	<div class="why-inner">
-		<div class="why-heading">
+		<div class="why-heading" data-scroll-animate="fade-up">
 			<p>Por qué elegirnos</p>
 			<h2 id="why-title">La diferencia entre una obra común y un trabajo bien hecho</h2>
 		</div>
 
 		<div class="why-grid">
 			{
-				reasons.map((reason) => (
-					<article class="why-card">
+				reasons.map((reason, index) => (
+					<article class="why-card" data-scroll-animate="fade-up" data-scroll-delay={`${120 + index * 90}ms`}>
 						<div class="why-icon">
 							{reason.icon === 'clock' && <ClockIcon aria-hidden="true" />}
 							{reason.icon === 'budget' && <IdCardIcon aria-hidden="true" />}
@@ -61,15 +63,40 @@ const reasons = [
 		position: relative;
 		overflow: hidden;
 		background:
-			radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.15), transparent 32%),
-			linear-gradient(110deg, #0b1329 0%, #0c1428 56%, #081a2a 100%);
+			linear-gradient(110deg, var(--color-surface-dark) 0%, var(--color-surface-dark-alt) 56%, var(--color-surface-dark-deep) 100%);
 		color: #ffffff;
 		padding: 78px 0 80px;
+	}
+
+	.why-orb {
+		position: absolute;
+		border-radius: 999px;
+		filter: blur(70px);
+		opacity: 0.16;
+		pointer-events: none;
+	}
+
+	.why-orb-right {
+		top: -88px;
+		right: -72px;
+		width: 240px;
+		height: 240px;
+		background: var(--color-brand-strong);
+	}
+
+	.why-orb-left {
+		left: -92px;
+		bottom: -96px;
+		width: 250px;
+		height: 250px;
+		background: #2563eb;
 	}
 
 	.why-inner {
 		width: min(1216px, calc(100% - 48px));
 		margin: 0 auto;
+		position: relative;
+		z-index: 1;
 	}
 
 	.why-heading {
@@ -80,7 +107,7 @@ const reasons = [
 
 	.why-heading p {
 		margin: 0 0 14px;
-		color: #007f87;
+		color: var(--color-brand-strong);
 		font-size: 14px;
 		font-weight: 950;
 		letter-spacing: 0.1em;
@@ -108,9 +135,12 @@ const reasons = [
 		min-height: 318px;
 		padding: 32px;
 		border: 1px solid rgba(255, 255, 255, 0.12);
-		border-radius: 14px;
-		background: rgba(30, 41, 67, 0.72);
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+		border-radius: 18px;
+		background: rgba(255, 255, 255, 0.06);
+		backdrop-filter: blur(9px);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.05),
+			0 16px 32px rgba(5, 11, 26, 0.18);
 		transition:
 			background 220ms ease,
 			border-color 220ms ease,
@@ -119,8 +149,8 @@ const reasons = [
 
 	.why-card:hover,
 	.why-card:focus-within {
-		border-color: rgba(185, 220, 225, 0.28);
-		background: rgba(38, 49, 74, 0.88);
+		border-color: rgba(0, 95, 107, 0.28);
+		background: rgba(255, 255, 255, 0.1);
 		transform: translateY(-4px);
 	}
 
@@ -131,7 +161,8 @@ const reasons = [
 		place-items: center;
 		border-radius: 13px;
 		background: #ffffff;
-		color: #005f6b;
+		color: var(--color-brand);
+		box-shadow: 0 12px 22px rgba(0, 95, 107, 0.16);
 	}
 
 	.why-icon svg {

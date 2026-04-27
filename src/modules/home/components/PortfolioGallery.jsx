@@ -43,11 +43,13 @@ export default function PortfolioGallery({ showFilters = false, variant = 'mosai
 			)}
 
 			<div className={`portfolio-gallery portfolio-gallery-${variant}`}>
-				{visibleProjects.map((project) => (
+				{visibleProjects.map((project, index) => (
 					<button
 						className={`portfolio-card ${project.size === 'large' ? 'portfolio-card-large' : 'portfolio-card-wide'}`}
 						key={project.title}
 						type="button"
+						data-scroll-animate="fade-up"
+						data-scroll-delay={`${140 + index * 90}ms`}
 						onClick={() => openProject(project)}
 					>
 						<img src={project.images[0]} alt={project.title} loading="lazy" />

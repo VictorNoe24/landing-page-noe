@@ -1,4 +1,5 @@
 ---
+import ScrollAnimator from '../../components/ScrollAnimator.jsx';
 import Layout from '../../layouts/Layout.astro';
 import AboutSection from './components/AboutSection.astro';
 import ContactSection from './components/ContactSection.astro';
@@ -13,6 +14,7 @@ import WhyChooseUsSection from './components/WhyChooseUsSection.astro';
 
 <Layout>
 	<main>
+		<ScrollAnimator client:load />
 		<HeroSection />
 		<AboutSection />
 		<ServicesSection />
