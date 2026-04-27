@@ -10,6 +10,30 @@ const contactHref = withBase('/#cotizar');
 	</svg>
 </a>
 
+<script is:inline>
+	(() => {
+		const floatButton = document.querySelector('.whatsapp-float');
+		const contactSection = document.getElementById('cotizar');
+		const footer = document.querySelector('.site-footer');
+
+		if (!floatButton || !contactSection) return;
+
+		const updateState = (entries) => {
+			const isCompactViewport = window.matchMedia('(max-width: 760px)').matches;
+			const shouldHide = isCompactViewport && entries.some((entry) => entry.isIntersecting);
+			floatButton.classList.toggle('is-hidden-on-mobile', shouldHide);
+		};
+
+		const observer = new IntersectionObserver(updateState, {
+			root: null,
+			threshold: 0.15,
+		});
+
+		observer.observe(contactSection);
+		if (footer) observer.observe(footer);
+	})();
+</script>
+
 <style>
 	.whatsapp-float {
 		position: fixed;
@@ -43,15 +67,22 @@ const contactHref = withBase('/#cotizar');
 
 	@media (max-width: 760px) {
 		.whatsapp-float {
-			right: max(14px, env(safe-area-inset-right));
-			bottom: max(14px, calc(env(safe-area-inset-bottom) + 14px));
-			width: 54px;
-			height: 54px;
+			right: max(12px, env(safe-area-inset-right));
+			bottom: max(12px, calc(env(safe-area-inset-bottom) + 12px));
+			width: 50px;
+			height: 50px;
+			box-shadow: 0 10px 22px rgba(0, 0, 0, 0.24);
 		}
 
 		.whatsapp-float svg {
-			width: 31px;
-			height: 31px;
+			width: 28px;
+			height: 28px;
+		}
+
+		.whatsapp-float.is-hidden-on-mobile {
+			opacity: 0;
+			pointer-events: none;
+			transform: translateY(14px) scale(0.92);
 		}
 	}
 </style>
