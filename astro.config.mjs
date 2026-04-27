@@ -11,6 +11,14 @@ export default defineConfig({
   site: 'https://victornoe24.github.io',
   base: isGitHubPagesBuild ? `/${repo}` : '/',
   integrations: [react()],
+  image: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
   vite: {
     plugins: [tailwindcss()],
   },

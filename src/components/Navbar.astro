@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import MobileNav from './MobileNav.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
 import { withBase } from '../utils/withBase.js';
+import logoAsset from '../assets/logo.png';
 
 const navItems = [
 	{ label: 'Inicio', href: withBase('/#inicio') },
@@ -19,7 +21,7 @@ const quoteHref = withBase('/#cotizar');
 <header class="site-header">
 	<nav class="navbar" aria-label="Principal">
 		<a class="brand" href={homeHref} aria-label="Noe Flores Avilés - inicio">
-			<img class="brand-logo" src={logoUrl} alt="Noe Flores Avilés" width="112" height="42" />
+			<Image class="brand-logo" src={logoAsset} alt="Noe Flores Avilés" width={126} height={48} loading="eager" fetchpriority="high" />
 		</a>
 
 		<div class="nav-actions">
