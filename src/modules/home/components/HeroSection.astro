@@ -9,20 +9,20 @@ const stats = [
 <section id="inicio" class="hero-section">
 	<div class="hero-inner">
 		<div class="hero-content">
-			<p class="hero-badge">
+			<p class="hero-badge hero-reveal hero-reveal-1 animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both">
 				<span aria-hidden="true">✓</span>
 				Maestro de Obra 100% Confiable en México
 			</p>
 
-			<h1 class="hero-title">
+			<h1 class="hero-title hero-reveal hero-reveal-2 animate-in fade-in slide-in-from-bottom-8 blur-in-4 duration-700 ease-out fill-mode-both">
 				Construimos tus ideas con la <span>solidez y calidad</span> que mereces.
 			</h1>
 
-			<p class="hero-description">
+			<p class="hero-description hero-reveal hero-reveal-3 animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both">
 				Especialistas en albañilería, remodelación y acabados. Más de 20 años de experiencia haciendo obras bien hechas, a tiempo y dentro del presupuesto. ¡Cero dolores de cabeza!
 			</p>
 
-			<div class="hero-actions">
+			<div class="hero-actions hero-reveal hero-reveal-4 animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both">
 				<a href="#cotizar" class="hero-button hero-button-primary">
 					Solicitar Presupuesto
 					<span aria-hidden="true">→</span>
@@ -37,8 +37,8 @@ const stats = [
 
 		<div class="hero-stats">
 			{
-				stats.map((stat) => (
-					<div class="hero-stat">
+				stats.map((stat, index) => (
+					<div class={`hero-stat hero-reveal hero-stat-reveal-${index + 1} animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out fill-mode-both`}>
 						<p>{stat.value}</p>
 						<span>{stat.label}</span>
 					</div>
@@ -185,6 +185,38 @@ const stats = [
 		gap: 48px;
 		margin-top: 82px;
 		margin-left: 40px;
+	}
+
+	.hero-reveal {
+		--tw-animation-delay: 0ms;
+	}
+
+	.hero-reveal-1 {
+		--tw-animation-delay: 0ms;
+	}
+
+	.hero-reveal-2 {
+		--tw-animation-delay: 110ms;
+	}
+
+	.hero-reveal-3 {
+		--tw-animation-delay: 220ms;
+	}
+
+	.hero-reveal-4 {
+		--tw-animation-delay: 320ms;
+	}
+
+	.hero-stat-reveal-1 {
+		--tw-animation-delay: 430ms;
+	}
+
+	.hero-stat-reveal-2 {
+		--tw-animation-delay: 520ms;
+	}
+
+	.hero-stat-reveal-3 {
+		--tw-animation-delay: 610ms;
 	}
 
 	.hero-stat p {

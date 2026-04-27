@@ -8,7 +8,7 @@ const projectsHref = withBase('/proyectos');
 <section id="galeria" class="portfolio-section">
 	<div class="portfolio-inner">
 		<div class="portfolio-heading">
-			<div>
+			<div data-scroll-animate="fade-left">
 				<p>Nuestro Portafolio</p>
 				<h2>Obras de las que estamos orgullosos</h2>
 				<span>
@@ -16,7 +16,7 @@ const projectsHref = withBase('/proyectos');
 				</span>
 			</div>
 
-			<a class="portfolio-all-link" href={projectsHref}>
+			<a class="portfolio-all-link" href={projectsHref} data-scroll-animate="fade-right" data-scroll-delay="120ms">
 				Ver todos los proyectos
 				<span class="portfolio-all-icon" aria-hidden="true">→</span>
 			</a>
@@ -44,6 +44,17 @@ const projectsHref = withBase('/proyectos');
 		gap: 48px;
 		align-items: end;
 		margin-bottom: 54px;
+	}
+
+	.portfolio-heading > div[data-scroll-animate],
+	.portfolio-all-link[data-scroll-animate] {
+		opacity: 0;
+		will-change: opacity, transform, filter;
+	}
+
+	.portfolio-heading > div.is-scroll-visible,
+	.portfolio-all-link.is-scroll-visible {
+		opacity: 1;
 	}
 
 	.portfolio-heading p {
@@ -163,6 +174,15 @@ const projectsHref = withBase('/proyectos');
 		cursor: pointer;
 		padding: 0;
 		text-align: left;
+	}
+
+	.portfolio-card[data-scroll-animate] {
+		opacity: 0;
+		will-change: opacity, transform, filter;
+	}
+
+	.portfolio-card.is-scroll-visible {
+		opacity: 1;
 	}
 
 	.portfolio-card-large {

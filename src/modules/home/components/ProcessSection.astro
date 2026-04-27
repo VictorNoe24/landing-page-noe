@@ -38,7 +38,7 @@ const steps = [
 
 <section class="process-section" aria-labelledby="process-title">
 	<div class="process-inner">
-		<div class="process-heading">
+		<div class="process-heading" data-scroll-animate="fade-up">
 			<p>Cómo Trabajamos</p>
 			<h2 id="process-title">Un proceso simple y sin estrés</h2>
 			<span>
@@ -49,11 +49,11 @@ const steps = [
 		<div class="process-timeline">
 			<div class="process-line" aria-hidden="true"></div>
 			{
-				steps.map((step) => {
+				steps.map((step, index) => {
 					const Icon = step.icon;
 
 					return (
-						<article class="process-step">
+						<article class="process-step" data-scroll-animate="fade-up" data-scroll-delay={`${120 + index * 90}ms`}>
 							<div class="process-icon">
 								<Icon aria-hidden="true" />
 							</div>
@@ -83,6 +83,15 @@ const steps = [
 		max-width: 780px;
 		margin: 0 auto 68px;
 		text-align: center;
+	}
+
+	.process-heading[data-scroll-animate] {
+		opacity: 0;
+		will-change: opacity, transform, filter;
+	}
+
+	.process-heading.is-scroll-visible {
+		opacity: 1;
 	}
 
 	.process-heading p {
@@ -136,6 +145,15 @@ const steps = [
 		text-align: center;
 	}
 
+	.process-step[data-scroll-animate] {
+		opacity: 0;
+		will-change: opacity, transform, filter;
+	}
+
+	.process-step.is-scroll-visible {
+		opacity: 1;
+	}
+
 	.process-icon {
 		display: grid;
 		width: 96px;
@@ -147,11 +165,22 @@ const steps = [
 		background: #ffffff;
 		color: #005f6b;
 		box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+		transition:
+			transform 220ms ease,
+			border-color 220ms ease,
+			box-shadow 220ms ease;
 	}
 
 	.process-icon svg {
 		width: 28px;
 		height: 28px;
+	}
+
+	.process-step:hover .process-icon,
+	.process-step:focus-within .process-icon {
+		transform: scale(1.08);
+		border-color: #d9a17f;
+		box-shadow: 0 18px 34px rgba(15, 23, 42, 0.12);
 	}
 
 	.process-step h3 {
