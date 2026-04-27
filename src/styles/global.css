@@ -48,6 +48,7 @@
 
 html {
 	-webkit-text-size-adjust: 100%;
+	overflow-x: clip;
 }
 
 html,
@@ -79,6 +80,10 @@ img,
 svg,
 video {
 	max-width: 100%;
+}
+
+body {
+	overflow-x: clip;
 }
 
 [data-scroll-animate] {
