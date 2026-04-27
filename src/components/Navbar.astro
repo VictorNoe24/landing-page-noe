@@ -1,5 +1,6 @@
 ---
 import MobileNav from './MobileNav.jsx';
+import ThemeToggle from './ThemeToggle.jsx';
 import { withBase } from '../utils/withBase.js';
 
 const navItems = [
@@ -32,6 +33,7 @@ const quoteHref = withBase('/#cotizar');
 				}
 			</div>
 
+			<ThemeToggle client:load className="nav-theme-toggle" />
 			<a class="quote-button" href={quoteHref}>Cotizar Proyecto</a>
 		</div>
 
@@ -46,9 +48,10 @@ const quoteHref = withBase('/#cotizar');
 		left: 0;
 		z-index: 50;
 		width: 100%;
-		background: #ffffff;
-		border-bottom: 1px solid #d9dde2;
-		box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+		background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+		border-bottom: 1px solid var(--color-border-muted);
+		box-shadow: 0 2px 8px var(--color-shadow-soft);
+		backdrop-filter: blur(12px);
 	}
 
 	.navbar {
@@ -65,7 +68,10 @@ const quoteHref = withBase('/#cotizar');
 		display: inline-flex;
 		align-items: center;
 		width: 148px;
+		padding: 6px 8px;
+		border-radius: 12px;
 		text-decoration: none;
+		transition: background 180ms ease;
 	}
 
 	.brand-logo {
@@ -93,7 +99,7 @@ const quoteHref = withBase('/#cotizar');
 	}
 
 	.nav-links a {
-		color: #2f3b4e;
+		color: var(--color-text-muted);
 		font-size: 16px;
 		font-weight: 700;
 		line-height: 1;
@@ -105,7 +111,11 @@ const quoteHref = withBase('/#cotizar');
 
 	.nav-links a:hover,
 	.nav-links a:focus-visible {
-		color: #004f5a;
+		color: var(--color-brand);
+	}
+
+	.nav-theme-toggle {
+		flex: 0 0 auto;
 	}
 
 	.quote-button {
@@ -115,12 +125,12 @@ const quoteHref = withBase('/#cotizar');
 		min-height: 44px;
 		padding: 0 24px;
 		border-radius: 8px;
-		background: #004f5a;
-		color: #ffffff;
+		background: var(--color-brand);
+		color: var(--color-white);
 		font-size: 16px;
 		font-weight: 800;
 		text-decoration: none;
-		box-shadow: 0 3px 8px rgba(0, 79, 90, 0.28);
+		box-shadow: 0 3px 8px color-mix(in srgb, var(--color-brand) 26%, transparent);
 		transition:
 			background 180ms ease,
 			transform 180ms ease,
@@ -130,9 +140,20 @@ const quoteHref = withBase('/#cotizar');
 
 	.quote-button:hover,
 	.quote-button:focus-visible {
-		background: #063f48;
-		box-shadow: 0 6px 14px rgba(0, 79, 90, 0.24);
+		background: color-mix(in srgb, var(--color-brand) 88%, #000000);
+		box-shadow: 0 6px 14px color-mix(in srgb, var(--color-brand) 22%, transparent);
 		transform: translateY(-1px);
+	}
+
+	:global([data-theme='dark']) .site-header {
+		background: rgba(10, 17, 31, 0.82);
+		border-bottom-color: rgba(255, 255, 255, 0.08);
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+	}
+
+	:global([data-theme='dark']) .brand:hover,
+	:global([data-theme='dark']) .brand:focus-visible {
+		background: rgba(255, 255, 255, 0.04);
 	}
 
 	@media (max-width: 860px) {
@@ -211,7 +232,7 @@ const quoteHref = withBase('/#cotizar');
 		border: 0;
 		border-radius: 10px;
 		background: transparent;
-		color: #334155;
+		color: var(--color-text-muted);
 		cursor: pointer;
 	}
 
@@ -235,11 +256,11 @@ const quoteHref = withBase('/#cotizar');
 		z-index: 100;
 		max-height: calc(100svh - 20px);
 		overflow-y: auto;
-		border: 1px solid #e2e8f0;
+		border: 1px solid var(--color-border-muted);
 		border-radius: 20px 20px 4px 4px;
-		background: #ffffff;
+		background: var(--color-surface);
 		padding: 18px 12px 30px;
-		box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+		box-shadow: 0 24px 60px var(--color-shadow-strong);
 	}
 
 	.mobile-menu-head {
@@ -271,8 +292,13 @@ const quoteHref = withBase('/#cotizar');
 		border: 0;
 		border-radius: 10px;
 		background: transparent;
-		color: #334155;
+		color: var(--color-text-muted);
 		cursor: pointer;
+	}
+
+	[data-theme='dark'] .mobile-menu-trigger,
+	[data-theme='dark'] .mobile-menu-close {
+		color: var(--color-text);
 	}
 
 	.mobile-menu-close svg {
@@ -290,7 +316,7 @@ const quoteHref = withBase('/#cotizar');
 		min-height: 40px;
 		align-items: center;
 		border-radius: 6px;
-		color: #0f172a;
+		color: var(--color-text);
 		font-size: 14px;
 		font-weight: 750;
 		text-decoration: none;
@@ -298,8 +324,8 @@ const quoteHref = withBase('/#cotizar');
 	}
 
 	.mobile-menu-links a:first-child {
-		background: #dcecee;
-		color: #005f6b;
+		background: var(--color-brand-soft-alt);
+		color: var(--color-brand);
 	}
 
 	.mobile-menu-cta {
@@ -309,8 +335,8 @@ const quoteHref = withBase('/#cotizar');
 		justify-content: center;
 		margin-top: 24px;
 		border-radius: 6px;
-		background: #005f6b;
-		color: #ffffff;
+		background: var(--color-brand);
+		color: var(--color-white);
 		font-size: 14px;
 		font-weight: 950;
 		text-decoration: none;

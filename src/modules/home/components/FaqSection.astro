@@ -15,8 +15,8 @@ import FaqAccordion from './FaqAccordion.jsx';
 
 <style is:global>
 	.faq-section {
-		background: #f8fafc;
-		color: #0f172a;
+		background: var(--color-surface-alt);
+		color: var(--color-text);
 		padding: 78px 0 80px;
 	}
 
@@ -32,7 +32,7 @@ import FaqAccordion from './FaqAccordion.jsx';
 
 	.faq-heading p {
 		margin: 0 0 14px;
-		color: #005f6b;
+		color: var(--color-brand);
 		font-size: 14px;
 		font-weight: 950;
 		letter-spacing: 0.09em;
@@ -42,7 +42,7 @@ import FaqAccordion from './FaqAccordion.jsx';
 
 	.faq-heading h2 {
 		margin: 0;
-		color: #0f172a;
+		color: var(--color-text);
 		font-size: clamp(36px, 3.2vw, 44px);
 		font-weight: 950;
 		line-height: 1.15;
@@ -56,10 +56,10 @@ import FaqAccordion from './FaqAccordion.jsx';
 
 	.faq-item {
 		overflow: hidden;
-		border: 1px solid #dfe5eb;
+		border: 1px solid var(--color-border-muted);
 		border-radius: 9px;
-		background: #ffffff;
-		box-shadow: 0 2px 5px rgba(15, 23, 42, 0.08);
+		background: var(--color-surface);
+		box-shadow: 0 2px 5px var(--color-shadow-soft);
 	}
 
 	.faq-trigger {
@@ -71,7 +71,7 @@ import FaqAccordion from './FaqAccordion.jsx';
 		gap: 18px;
 		border: 0;
 		background: transparent;
-		color: #0f172a;
+		color: var(--color-text);
 		cursor: pointer;
 		padding: 0 24px;
 		text-align: left;
@@ -85,7 +85,7 @@ import FaqAccordion from './FaqAccordion.jsx';
 		width: 18px;
 		height: 18px;
 		flex: 0 0 auto;
-		color: #005f6b;
+		color: var(--color-brand);
 		transition: transform 180ms ease;
 	}
 
@@ -95,8 +95,8 @@ import FaqAccordion from './FaqAccordion.jsx';
 
 	.faq-content {
 		overflow: hidden;
-		border-top: 1px solid #eef2f7;
-		color: #475569;
+		border-top: 1px solid var(--color-border-soft);
+		color: var(--color-text-muted);
 		font-size: 16px;
 		font-weight: 500;
 		line-height: 1.65;

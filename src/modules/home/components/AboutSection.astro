@@ -105,8 +105,8 @@ const values = [
 
 <style>
 	.about-section {
-		background: #f8fafc;
-		color: #0f172a;
+		background: var(--color-surface-alt);
+		color: var(--color-text);
 		overflow: clip;
 		padding: 74px 0 66px;
 	}
@@ -136,8 +136,8 @@ const values = [
 		max-width: 100%;
 		overflow: hidden;
 		border-radius: 18px;
-		background: #d97745;
-		box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
+		background: var(--color-brand-soft);
+		box-shadow: 0 24px 48px var(--color-shadow-strong);
 	}
 
 	.image-frame img {
@@ -156,7 +156,7 @@ const values = [
 		width: 390px;
 		height: 462px;
 		border-radius: 18px;
-		background: #005f6b;
+		background: var(--color-brand);
 	}
 
 	.experience-card {
@@ -170,10 +170,10 @@ const values = [
 		width: 256px;
 		min-height: 104px;
 		padding: 20px 24px;
-		border-left: 4px solid #071225;
+		border-left: 4px solid var(--color-surface-dark-deep);
 		border-radius: 12px;
-		background: #ffffff;
-		box-shadow: 0 22px 40px rgba(15, 23, 42, 0.16);
+		background: var(--color-surface);
+		box-shadow: 0 22px 40px var(--color-shadow-strong);
 	}
 
 	.experience-icon,
@@ -181,8 +181,8 @@ const values = [
 		display: grid;
 		flex: 0 0 auto;
 		place-items: center;
-		background: #b9dce1;
-		color: #005f6b;
+		background: var(--color-brand-soft);
+		color: var(--color-brand);
 	}
 
 	.experience-icon {
@@ -199,7 +199,7 @@ const values = [
 
 	.experience-card p {
 		margin: 0;
-		color: #0f172a;
+		color: var(--color-text);
 		font-size: 32px;
 		font-weight: 950;
 		line-height: 1;
@@ -208,7 +208,7 @@ const values = [
 	.experience-card span {
 		display: block;
 		margin-top: 6px;
-		color: #475569;
+		color: var(--color-text-muted);
 		font-size: 14px;
 		font-weight: 800;
 		line-height: 1.25;
@@ -235,7 +235,7 @@ const values = [
 
 	.section-eyebrow {
 		margin: 0 0 12px;
-		color: #005f6b;
+		color: var(--color-brand);
 		font-size: 14px;
 		font-weight: 950;
 		letter-spacing: 0.08em;
@@ -247,7 +247,7 @@ const values = [
 		max-width: 590px;
 		width: 100%;
 		margin: 0 0 28px;
-		color: #0f172a;
+		color: var(--color-text);
 		font-size: clamp(36px, 3.2vw, 46px);
 		font-weight: 950;
 		line-height: 1.18;
@@ -257,14 +257,14 @@ const values = [
 
 	.about-content > p {
 		margin: 0 0 26px;
-		color: #475569;
+		color: var(--color-text-muted);
 		font-size: 18px;
 		font-weight: 500;
 		line-height: 1.6;
 	}
 
 	.about-content strong {
-		color: #3f4b5d;
+		color: var(--color-text);
 		font-weight: 900;
 	}
 
@@ -294,7 +294,7 @@ const values = [
 
 	.value-item h3 {
 		margin: 0;
-		color: #0f172a;
+		color: var(--color-text);
 		font-size: 20px;
 		font-weight: 950;
 		line-height: 1.2;
@@ -302,7 +302,7 @@ const values = [
 
 	.value-item p {
 		margin: 8px 0 0;
-		color: #475569;
+		color: var(--color-text-muted);
 		font-size: 16px;
 		font-weight: 500;
 		line-height: 1.45;
