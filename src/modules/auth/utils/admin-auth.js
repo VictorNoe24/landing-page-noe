@@ -19,15 +19,16 @@ function clearLoginMessage(messageElement) {
 }
 
 function toggleViews(root, isAuthenticated) {
-	const guestView = root.querySelector('[data-admin-auth-view="guest"]');
-	const authenticatedView = root.querySelector('[data-admin-auth-view="authenticated"]');
+	const guestViews = root.querySelectorAll('[data-admin-auth-view="guest"]');
+	const authenticatedViews = root.querySelectorAll('[data-admin-auth-view="authenticated"]');
 
-	if (!guestView || !authenticatedView) {
-		return;
-	}
+	guestViews.forEach((view) => {
+		view.hidden = isAuthenticated;
+	});
 
-	guestView.hidden = isAuthenticated;
-	authenticatedView.hidden = !isAuthenticated;
+	authenticatedViews.forEach((view) => {
+		view.hidden = !isAuthenticated;
+	});
 }
 
 function mapAuthError(error) {
@@ -46,16 +47,16 @@ function mapAuthError(error) {
 
 function renderAuthenticatedState(root, session) {
 	toggleViews(root, true);
+	root.dataset.authenticated = 'true';
 
-	const emailElement = root.querySelector('[data-admin-user-email]');
-
-	if (emailElement) {
+	root.querySelectorAll('[data-admin-user-email]').forEach((emailElement) => {
 		emailElement.textContent = session?.user?.email || 'Sesión iniciada';
-	}
+	});
 }
 
 function renderGuestState(root, form, messageElement) {
 	toggleViews(root, false);
+	root.dataset.authenticated = 'false';
 	form?.reset();
 	clearLoginMessage(messageElement);
 }
@@ -74,9 +75,10 @@ export function setupAdminAuthPage() {
 		const messageElement = root.querySelector('[data-admin-login-message]');
 		const submitButton = root.querySelector('[data-admin-login-submit]');
 		const submitLabel = root.querySelector('[data-admin-login-submit-label]');
-		const logoutButton = root.querySelector('[data-admin-logout]');
+		const logoutButtons = root.querySelectorAll('[data-admin-logout]');
+		const sidebarToggles = root.querySelectorAll('[data-admin-sidebar-toggle]');
 
-		if (!form || !messageElement || !submitButton || !submitLabel || !logoutButton) {
+		if (!form || !messageElement || !submitButton || !submitLabel || !logoutButtons.length) {
 			return;
 		}
 
@@ -134,18 +136,29 @@ export function setupAdminAuthPage() {
 			}
 		});
 
-		logoutButton.addEventListener('click', async () => {
-			logoutButton.disabled = true;
-			logoutButton.textContent = 'Cerrando...';
+		logoutButtons.forEach((logoutButton) => {
+			const defaultLabel = logoutButton.textContent || 'Cerrar sesión';
 
-			try {
-				await signOut();
-			} catch (error) {
-				console.error('Admin logout error:', error);
-			} finally {
-				logoutButton.disabled = false;
-				logoutButton.textContent = 'Cerrar sesión';
-			}
+			logoutButton.addEventListener('click', async () => {
+				logoutButton.disabled = true;
+				logoutButton.textContent = 'Cerrando...';
+
+				try {
+					await signOut();
+				} catch (error) {
+					console.error('Admin logout error:', error);
+				} finally {
+					logoutButton.disabled = false;
+					logoutButton.textContent = defaultLabel;
+				}
+			});
+		});
+
+		sidebarToggles.forEach((toggle) => {
+			toggle.addEventListener('click', () => {
+				const nextValue = root.dataset.sidebarCollapsed === 'true' ? 'false' : 'true';
+				root.dataset.sidebarCollapsed = nextValue;
+			});
 		});
 	});
 }

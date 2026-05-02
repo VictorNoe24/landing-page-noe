@@ -26,6 +26,10 @@
 	<button type="submit" data-admin-login-submit>
 		<span data-admin-login-submit-label>Iniciar sesión</span>
 	</button>
+
+	<p class="admin-login-footnote">
+		Acceso restringido para uso interno. Solo usuarios autorizados pueden ingresar.
+	</p>
 </form>
 
 <style>
@@ -47,14 +51,18 @@
 	}
 
 	.admin-login-form input {
-		height: 54px;
-		border: 1px solid var(--color-border-muted);
-		border-radius: 14px;
-		background: var(--color-surface);
+		height: 58px;
+		border: 1px solid color-mix(in srgb, var(--color-brand) 14%, var(--color-border-muted));
+		border-radius: 16px;
+		background: linear-gradient(
+			180deg,
+			color-mix(in srgb, var(--color-surface) 98%, transparent) 0%,
+			color-mix(in srgb, var(--color-surface-alt) 98%, transparent) 100%
+		);
 		color: var(--color-text);
 		font: inherit;
 		font-size: 16px;
-		padding: 0 16px;
+		padding: 0 18px;
 		outline: none;
 		transition:
 			border-color 180ms ease,
@@ -64,8 +72,8 @@
 
 	.admin-login-form input:focus {
 		border-color: var(--color-brand);
-		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand) 14%, transparent);
-		background: var(--color-surface-alt);
+		box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand) 12%, transparent);
+		background: var(--color-surface);
 	}
 
 	.admin-login-form input::placeholder {
@@ -74,11 +82,11 @@
 
 	.admin-login-form button {
 		display: inline-flex;
-		min-height: 56px;
+		min-height: 58px;
 		align-items: center;
 		justify-content: center;
 		border: 0;
-		border-radius: 16px;
+		border-radius: 18px;
 		background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-strong) 100%);
 		color: var(--color-white);
 		cursor: pointer;
@@ -121,5 +129,14 @@
 	.admin-login-alert.is-success {
 		background: color-mix(in srgb, #1f8f5f 12%, var(--color-surface));
 		color: #166344;
+	}
+
+	.admin-login-footnote {
+		margin: -2px 0 0;
+		color: var(--color-text-subtle);
+		font-size: 13px;
+		font-weight: 600;
+		line-height: 1.6;
+		text-align: center;
 	}
 </style>

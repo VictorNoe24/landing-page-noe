@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import { withBase } from '../utils/withBase.js';
+
+const faviconPng = withBase('/images/logo.png');
+const { title = 'Admin | Noe Flores Avilés', noindex = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<script is:inline>
+			(() => {
+				const storedTheme = window.localStorage.getItem('theme');
+				const theme = storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : 'light';
+
+				document.documentElement.dataset.theme = theme;
+			})();
+		</script>
+		<link rel="icon" type="image/png" href={faviconPng} />
+		<link rel="apple-touch-icon" href={faviconPng} />
+		<meta name="generator" content={Astro.generator} />
+		{noindex && <meta name="robots" content="noindex,nofollow" />}
+		<title>{title}</title>
+	</head>
+	<body class="admin-layout-body">
+		<slot />
+	</body>
+</html>
+
+<style>
+	:root {
+		color: var(--color-text);
+		background: var(--color-bg);
+		font-family:
+			Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	}
+
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		max-width: 100%;
+		min-height: 100%;
+	}
+
+	.admin-layout-body {
+		min-height: 100vh;
+		overflow-x: clip;
+		background:
+			radial-gradient(circle at top left, color-mix(in srgb, var(--color-brand) 10%, transparent), transparent 28%),
+			linear-gradient(180deg, #f6fbfc 0%, var(--color-bg) 100%);
+		color: var(--color-text);
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+</style>

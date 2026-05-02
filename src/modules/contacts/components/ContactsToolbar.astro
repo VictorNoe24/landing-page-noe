@@ -1,0 +1,276 @@
+---
+import { MagnifyingGlassIcon, MixerHorizontalIcon, ReloadIcon } from '@radix-ui/react-icons';
+---
+
+<div class="contacts-panel__topbar">
+	<div>
+		<p class="contacts-panel__eyebrow">CRM interno</p>
+		<h2>Contactos</h2>
+		<p class="contacts-panel__description">
+			Gestiona leads entrantes, identifica interés comercial y actualiza su estatus en un solo lugar.
+		</p>
+	</div>
+
+	<div class="contacts-panel__actions">
+		<button type="button" class="contacts-panel__ghost" data-contacts-refresh>
+			<ReloadIcon aria-hidden="true" />
+			<span>Actualizar</span>
+		</button>
+
+		<label class="contacts-panel__ghost contacts-panel__filter">
+			<MixerHorizontalIcon aria-hidden="true" />
+			<select data-contacts-status-filter>
+				<option value="all">Todos los estatus</option>
+			</select>
+		</label>
+	</div>
+</div>
+
+<div class="contacts-panel__search-row">
+	<label class="contacts-search">
+		<MagnifyingGlassIcon aria-hidden="true" />
+		<input
+			type="search"
+			placeholder="Buscar por nombre, correo, teléfono o servicio"
+			data-contacts-search
+		/>
+	</label>
+</div>
+
+<div class="contacts-tabs">
+	<button type="button" class="contacts-tab is-active" data-contacts-tab="new">
+		Nuevos
+		<span data-contacts-tab-count="new">0</span>
+	</button>
+	<button type="button" class="contacts-tab" data-contacts-tab="active">
+		Activos
+		<span data-contacts-tab-count="active">0</span>
+	</button>
+	<button type="button" class="contacts-tab" data-contacts-tab="all">
+		Todos
+		<span data-contacts-tab-count="all">0</span>
+	</button>
+</div>
+
+<p class="contacts-feedback" data-contacts-feedback hidden aria-live="polite"></p>
+
+<style>
+	.contacts-panel__topbar {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 24px;
+	}
+
+	.contacts-panel__eyebrow {
+		margin: 0 0 8px;
+		color: var(--color-brand);
+		font-size: 12px;
+		font-weight: 900;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.contacts-panel__topbar h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: clamp(28px, 3vw, 42px);
+		font-weight: 950;
+		line-height: 1;
+		letter-spacing: -0.03em;
+	}
+
+	.contacts-panel__description {
+		max-width: 720px;
+		margin: 10px 0 0;
+		color: var(--color-text-muted);
+		font-size: 17px;
+		line-height: 1.65;
+	}
+
+	.contacts-panel__actions {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+	}
+
+	.contacts-panel__ghost {
+		display: inline-flex;
+		min-height: 52px;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		padding: 0 20px;
+		border: 1px solid var(--color-border-muted);
+		border-radius: 16px;
+		background: var(--color-surface);
+		color: var(--color-text);
+		cursor: pointer;
+		font: inherit;
+		font-size: 15px;
+		font-weight: 850;
+		white-space: nowrap;
+		transition:
+			border-color 180ms ease,
+			background-color 180ms ease,
+			transform 180ms ease;
+	}
+
+	.contacts-panel__ghost:hover,
+	.contacts-panel__ghost:focus-visible {
+		border-color: color-mix(in srgb, var(--color-brand) 42%, var(--color-border-muted));
+		background: color-mix(in srgb, var(--color-brand-soft) 30%, var(--color-surface));
+		transform: translateY(-1px);
+	}
+
+	.contacts-panel__ghost svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	.contacts-panel__ghost:disabled {
+		cursor: wait;
+		opacity: 0.72;
+	}
+
+	.contacts-panel__filter {
+		position: relative;
+		padding-right: 12px;
+	}
+
+	.contacts-panel__filter select {
+		border: 0;
+		background: transparent;
+		color: var(--color-text);
+		font: inherit;
+		outline: none;
+		padding-right: 8px;
+		cursor: pointer;
+	}
+
+	.contacts-panel__search-row {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.contacts-search {
+		display: flex;
+		width: min(100%, 760px);
+		height: 62px;
+		align-items: center;
+		gap: 14px;
+		padding: 0 22px;
+		border: 1px solid color-mix(in srgb, var(--color-brand) 14%, var(--color-border-muted));
+		border-radius: 18px;
+		background: var(--color-surface);
+		box-shadow: 0 10px 24px color-mix(in srgb, var(--color-shadow-soft) 32%, transparent);
+	}
+
+	.contacts-search svg {
+		width: 22px;
+		height: 22px;
+		color: var(--color-text-subtle);
+	}
+
+	.contacts-search input {
+		flex: 1;
+		border: 0;
+		background: transparent;
+		color: var(--color-text);
+		font: inherit;
+		font-size: 17px;
+		outline: none;
+	}
+
+	.contacts-search input::placeholder {
+		color: var(--color-text-subtle);
+	}
+
+	.contacts-tabs {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+		padding-bottom: 12px;
+		border-bottom: 1px solid var(--color-border-soft);
+		overflow-x: auto;
+	}
+
+	.contacts-tab {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		padding: 0 2px 12px;
+		border: 0;
+		border-bottom: 3px solid transparent;
+		background: transparent;
+		color: var(--color-text-muted);
+		cursor: pointer;
+		font: inherit;
+		font-size: 18px;
+		font-weight: 900;
+		letter-spacing: -0.01em;
+		white-space: nowrap;
+	}
+
+	.contacts-tab span {
+		display: inline-flex;
+		min-width: 28px;
+		height: 28px;
+		align-items: center;
+		justify-content: center;
+		padding: 0 8px;
+		border-radius: 999px;
+		background: var(--color-surface-alt);
+		font-size: 13px;
+	}
+
+	.contacts-tab.is-active {
+		border-bottom-color: var(--color-brand);
+		color: var(--color-text);
+	}
+
+	.contacts-tab.is-active span {
+		background: color-mix(in srgb, var(--color-brand) 16%, var(--color-surface));
+		color: var(--color-brand);
+	}
+
+	.contacts-feedback {
+		padding: 12px 14px;
+		border-radius: 14px;
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 1.5;
+	}
+
+	.contacts-feedback.is-error {
+		background: color-mix(in srgb, #d64545 12%, var(--color-surface));
+		color: #922b2b;
+	}
+
+	.contacts-feedback.is-success {
+		background: color-mix(in srgb, #1f8f5f 12%, var(--color-surface));
+		color: #166344;
+	}
+
+	@media (max-width: 640px) {
+		.contacts-panel__topbar {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.contacts-panel__actions {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.contacts-panel__ghost {
+			width: 100%;
+		}
+
+		.contacts-search {
+			width: 100%;
+			height: 58px;
+			padding: 0 16px;
+		}
+	}
+</style>

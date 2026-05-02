@@ -1,0 +1,269 @@
+---
+import { EyeOpenIcon } from '@radix-ui/react-icons';
+---
+
+<div class="contacts-table-shell">
+	<table class="contacts-table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Cliente</th>
+				<th>Servicio</th>
+				<th>Estatus</th>
+				<th>Fecha</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody data-contacts-table-body>
+			<tr>
+				<td colspan="6" class="contacts-table__empty">
+					Cargando contactos...
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<template data-contact-view-icon>
+	<EyeOpenIcon aria-hidden="true" />
+</template>
+
+<style>
+	:global(.contacts-table-shell) {
+		overflow-x: auto;
+		border: 1px solid color-mix(in srgb, var(--color-brand) 8%, var(--color-border-soft));
+		border-radius: 20px;
+		background: var(--color-surface);
+		box-shadow: 0 14px 30px color-mix(in srgb, var(--color-shadow-soft) 22%, transparent);
+	}
+
+	:global(.contacts-table) {
+		width: 100%;
+		min-width: 1020px;
+		border-collapse: collapse;
+		table-layout: fixed;
+	}
+
+	:global(.contacts-table) th,
+	:global(.contacts-table) td {
+		padding: 20px 16px;
+		border-bottom: 1px solid var(--color-border-soft);
+		text-align: left;
+		vertical-align: top;
+	}
+
+	:global(.contacts-table) th {
+		background: color-mix(in srgb, var(--color-surface-alt) 92%, var(--color-surface));
+		color: var(--color-text-subtle);
+		font-size: 12px;
+		font-weight: 900;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	:global(.contacts-table) td {
+		color: var(--color-text);
+		font-size: 14px;
+		line-height: 1.6;
+	}
+
+	:global(.contacts-table) th:nth-child(1),
+	:global(.contacts-table) td:nth-child(1) {
+		width: 86px;
+	}
+
+	:global(.contacts-table) th:nth-child(3),
+	:global(.contacts-table) td:nth-child(3) {
+		width: 210px;
+	}
+
+	:global(.contacts-table) th:nth-child(4),
+	:global(.contacts-table) td:nth-child(4) {
+		width: 220px;
+	}
+
+	:global(.contacts-table) th:nth-child(5),
+	:global(.contacts-table) td:nth-child(5) {
+		width: 200px;
+	}
+
+	:global(.contacts-table) th:nth-child(6),
+	:global(.contacts-table) td:nth-child(6) {
+		width: 92px;
+	}
+
+	:global(.contacts-table) tbody tr {
+		transition: background-color 180ms ease;
+	}
+
+	:global(.contacts-table) tbody tr:hover {
+		background: color-mix(in srgb, var(--color-brand-soft-alt) 36%, transparent);
+	}
+
+	:global(.contacts-table) tr:last-child td {
+		border-bottom: 0;
+	}
+
+	:global(.contacts-table__id) {
+		display: inline-flex;
+		min-width: 52px;
+		align-items: center;
+		justify-content: center;
+		padding: 8px 10px;
+		border-radius: 999px;
+		background: var(--color-surface-alt);
+		color: var(--color-text);
+		font-weight: 900;
+	}
+
+	:global(.contacts-table__name) {
+		display: block;
+		font-size: 20px;
+		font-weight: 900;
+		line-height: 1.15;
+	}
+
+	:global(.contacts-table__primary) {
+		display: block;
+		margin-top: 6px;
+		color: var(--color-text);
+		font-size: 15px;
+		font-weight: 600;
+	}
+
+	:global(.contacts-table__subtle) {
+		display: block;
+		margin-top: 4px;
+		color: var(--color-text-subtle);
+		font-size: 13px;
+	}
+
+	:global(.contacts-table__message) {
+		margin-top: 8px;
+		max-width: 420px;
+		color: var(--color-text-muted);
+		white-space: pre-wrap;
+	}
+
+	:global(.contacts-table__pill) {
+		display: inline-flex;
+		align-items: center;
+		padding: 8px 14px;
+		border: 1px solid var(--color-border-soft);
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--color-surface-alt) 82%, var(--color-surface));
+		color: var(--color-text);
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	:global(.contacts-table__select) {
+		width: 100%;
+		max-width: 180px;
+		height: 42px;
+		border: 1px solid var(--color-border-muted);
+		border-radius: 12px;
+		background: var(--color-surface);
+		color: var(--color-text);
+		appearance: none;
+		font: inherit;
+		font-size: 14px;
+		font-weight: 700;
+		padding: 0 42px 0 12px;
+		background-image:
+			linear-gradient(45deg, transparent 50%, var(--color-text-muted) 50%),
+			linear-gradient(135deg, var(--color-text-muted) 50%, transparent 50%);
+		background-position:
+			calc(100% - 18px) calc(50% - 2px),
+			calc(100% - 12px) calc(50% - 2px);
+		background-size: 6px 6px, 6px 6px;
+		background-repeat: no-repeat;
+		transition:
+			border-color 180ms ease,
+			box-shadow 180ms ease,
+			background-color 180ms ease;
+	}
+
+	:global(.contacts-table__select):focus {
+		border-color: color-mix(in srgb, var(--color-brand) 50%, var(--color-border-muted));
+		box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand) 12%, transparent);
+		outline: none;
+	}
+
+	:global(.contacts-table__select):disabled {
+		cursor: wait;
+		opacity: 0.76;
+	}
+
+	:global(.contacts-table__status-badge) {
+		display: inline-flex;
+		margin-top: 10px;
+		padding: 6px 10px;
+		border: 1px solid color-mix(in srgb, var(--color-brand) 12%, transparent);
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--color-brand) 8%, var(--color-surface));
+		color: var(--color-brand);
+		font-size: 12px;
+		font-weight: 900;
+		letter-spacing: 0.02em;
+	}
+
+	:global(.contacts-table__actions) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	:global(.contacts-table__action) {
+		display: inline-flex;
+		width: 46px;
+		height: 46px;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid var(--color-border-muted);
+		border-radius: 14px;
+		background: var(--color-surface);
+		color: var(--color-text-muted);
+		cursor: pointer;
+		box-shadow: 0 8px 18px color-mix(in srgb, var(--color-shadow-soft) 12%, transparent);
+		transition:
+			border-color 180ms ease,
+			color 180ms ease,
+			background-color 180ms ease,
+			transform 180ms ease,
+			box-shadow 180ms ease;
+	}
+
+	:global(.contacts-table__action):hover,
+	:global(.contacts-table__action):focus-visible {
+		border-color: var(--color-brand);
+		background: color-mix(in srgb, var(--color-brand-soft) 26%, var(--color-surface));
+		color: var(--color-brand);
+		transform: translateY(-1px);
+		box-shadow: 0 12px 24px color-mix(in srgb, var(--color-brand) 14%, transparent);
+	}
+
+	:global(.contacts-table__action) svg {
+		width: 20px;
+		height: 20px;
+	}
+
+	:global(.contacts-table__empty) {
+		padding: 32px 18px;
+		color: var(--color-text-muted);
+		text-align: center;
+	}
+
+	@media (max-width: 1100px) {
+		:global(.contacts-table) {
+			table-layout: auto;
+		}
+	}
+
+	@media (max-width: 640px) {
+		:global(.contacts-table-shell) {
+			border-radius: 16px;
+		}
+	}
+</style>

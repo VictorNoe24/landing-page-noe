@@ -1,0 +1,19 @@
+---
+import ContactDetailModal from './ContactDetailModal.astro';
+import ContactsTable from './ContactsTable.astro';
+import ContactsToolbar from './ContactsToolbar.astro';
+---
+
+<section class="contacts-panel" data-contacts-panel>
+	<ContactsToolbar />
+	<ContactsTable />
+	<ContactDetailModal />
+</section>
+
+<style>
+	.contacts-panel {
+		display: grid;
+		gap: 24px;
+		margin-top: 28px;
+	}
+</style>
