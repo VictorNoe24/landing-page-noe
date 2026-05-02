@@ -1,0 +1,178 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdminLoginForm from './components/AdminLoginForm.astro';
+---
+
+<Layout title="Acceso privado | Noe Flores Avilés" noindex={true}>
+	<main class="admin-page">
+		<section class="admin-shell">
+			<div class="admin-panel" data-admin-auth-root>
+				<div class="admin-view" data-admin-auth-view="guest">
+					<p class="admin-eyebrow">Acceso privado</p>
+					<h1>Panel de administración</h1>
+					<p class="admin-description">
+						Este acceso está reservado para la administración interna del sitio. Inicia sesión
+						con tu cuenta de Supabase para continuar.
+					</p>
+
+					<AdminLoginForm />
+				</div>
+
+				<div class="admin-view" data-admin-auth-view="authenticated" hidden>
+					<p class="admin-eyebrow">Sesión activa</p>
+					<h1>Bienvenido al panel</h1>
+					<p class="admin-description">
+						Has iniciado sesión correctamente. Aquí iremos integrando la vista de contactos y
+						las herramientas privadas del sitio.
+					</p>
+					<p class="admin-session-chip" data-admin-user-email></p>
+
+					<div class="admin-placeholder">
+						<h2>Contactos</h2>
+						<p>
+							En el siguiente paso conectamos esta sección para listar todos los leads
+							guardados en Supabase.
+						</p>
+					</div>
+
+					<button type="button" class="admin-logout-button" data-admin-logout>
+						Cerrar sesión
+					</button>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<script>
+		import { setupAdminAuthPage } from './utils/admin-auth.js';
+
+		setupAdminAuthPage();
+	</script>
+</Layout>
+
+<style>
+	.admin-page {
+		min-height: calc(100vh - 80px);
+		padding: 48px 20px 72px;
+		background:
+			radial-gradient(circle at top left, color-mix(in srgb, var(--color-brand) 12%, transparent), transparent 40%),
+			linear-gradient(180deg, var(--color-bg) 0%, color-mix(in srgb, var(--color-surface-alt) 72%, var(--color-bg)) 100%);
+	}
+
+	.admin-shell {
+		width: min(100%, 1080px);
+		margin: 0 auto;
+	}
+
+	.admin-panel {
+		width: min(100%, 640px);
+		margin: 0 auto;
+		padding: 38px 34px 34px;
+		border: 1px solid var(--color-border-soft);
+		border-radius: 28px;
+		background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+		box-shadow: 0 26px 60px var(--color-shadow-soft);
+		backdrop-filter: blur(10px);
+	}
+
+	.admin-eyebrow {
+		margin: 0 0 12px;
+		color: var(--color-brand);
+		font-size: 13px;
+		font-weight: 900;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.admin-view h1 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: clamp(32px, 4vw, 42px);
+		font-weight: 950;
+		line-height: 1.04;
+	}
+
+	.admin-description {
+		margin: 18px 0 0;
+		color: var(--color-text-muted);
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 1.7;
+	}
+
+	.admin-session-chip {
+		display: inline-flex;
+		margin: 20px 0 0;
+		padding: 10px 14px;
+		border-radius: 999px;
+		background: var(--color-brand-soft-alt);
+		color: var(--color-brand);
+		font-size: 14px;
+		font-weight: 800;
+	}
+
+	.admin-placeholder {
+		margin-top: 26px;
+		padding: 22px 20px;
+		border: 1px dashed var(--color-border-muted);
+		border-radius: 18px;
+		background: var(--color-surface-alt);
+	}
+
+	.admin-placeholder h2 {
+		margin: 0;
+		color: var(--color-text);
+		font-size: 22px;
+		font-weight: 900;
+	}
+
+	.admin-placeholder p {
+		margin: 10px 0 0;
+		color: var(--color-text-muted);
+		font-size: 15px;
+		line-height: 1.65;
+	}
+
+	.admin-logout-button {
+		display: inline-flex;
+		min-height: 52px;
+		margin-top: 26px;
+		align-items: center;
+		justify-content: center;
+		padding: 0 22px;
+		border: 1px solid var(--color-border-muted);
+		border-radius: 999px;
+		background: var(--color-surface);
+		color: var(--color-text);
+		cursor: pointer;
+		font: inherit;
+		font-size: 15px;
+		font-weight: 900;
+		transition:
+			transform 180ms ease,
+			border-color 180ms ease,
+			background 180ms ease;
+	}
+
+	.admin-logout-button:hover,
+	.admin-logout-button:focus-visible {
+		border-color: var(--color-brand);
+		background: var(--color-surface-alt);
+		transform: translateY(-1px);
+	}
+
+	@media (max-width: 640px) {
+		.admin-page {
+			padding: 28px 14px 56px;
+		}
+
+		.admin-panel {
+			padding: 28px 18px 22px;
+			border-radius: 22px;
+		}
+
+		.admin-view h1 {
+			font-size: 30px;
+		}
+	}
+</style>

@@ -6,6 +6,7 @@ import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import { withBase } from '../utils/withBase.js';
 
 const faviconPng = withBase('/images/logo.png');
+const { title = 'Noe Flores Avilés', noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -24,7 +25,8 @@ const faviconPng = withBase('/images/logo.png');
 		<link rel="icon" type="image/png" href={faviconPng} />
 		<link rel="apple-touch-icon" href={faviconPng} />
 		<meta name="generator" content={Astro.generator} />
-		<title>Noe Flores Avilés</title>
+		{noindex && <meta name="robots" content="noindex,nofollow" />}
+		<title>{title}</title>
 	</head>
 	<body>
 		<Navbar />
