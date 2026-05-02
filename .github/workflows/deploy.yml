@@ -18,6 +18,10 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
+      PUBLIC_SUPABASE_KEY: ${{ secrets.PUBLIC_SUPABASE_KEY }}
+      PUBLIC_SUPABASE_LEADS_TABLE: ${{ secrets.PUBLIC_SUPABASE_LEADS_TABLE }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
