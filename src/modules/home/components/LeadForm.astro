@@ -1,0 +1,302 @@
+---
+import { PaperPlaneIcon } from '@radix-ui/react-icons';
+
+interface Props {
+	serviceOptions: string[];
+	supabaseUrl: string;
+	supabaseKey: string;
+	leadsTable: string;
+}
+
+const { serviceOptions, supabaseUrl, supabaseKey, leadsTable } = Astro.props as Props;
+---
+
+<form
+	class="quote-form"
+	action="#"
+	method="post"
+	data-lead-form
+	data-scroll-animate="fade-right"
+	data-supabase-url={supabaseUrl}
+	data-supabase-key={supabaseKey}
+	data-leads-table={leadsTable}
+>
+	<h3>Solicita tu cotización</h3>
+
+	<p class="form-alert" data-form-message hidden aria-live="polite"></p>
+
+	<label>
+		<span>Nombre Completo</span>
+		<input type="text" name="name" placeholder="Ej. Juan Pérez" autocomplete="name" required />
+	</label>
+
+	<div class="form-row">
+		<label>
+			<span>Teléfono (WhatsApp)</span>
+			<input type="tel" name="phone" placeholder="Ej. 55 1234 5678" autocomplete="tel" required />
+		</label>
+
+		<label>
+			<span>Tipo de Servicio</span>
+			<select name="service" required>
+				<option value="">Selecciona una opción</option>
+				{
+					serviceOptions.map((option) => (
+						<option value={option}>{option}</option>
+					))
+				}
+			</select>
+		</label>
+	</div>
+
+	<label>
+		<span>Correo Electrónico</span>
+		<input
+			type="email"
+			name="email"
+			placeholder="Ej. juan@email.com"
+			autocomplete="email"
+		/>
+	</label>
+
+	<label>
+		<span>Mensaje o Detalles del Proyecto</span>
+		<textarea
+			name="message"
+			placeholder="Cuéntanos brevemente qué necesitas construir, remodelar o reparar..."
+			required
+		></textarea>
+	</label>
+
+	<label class="form-honeypot" aria-hidden="true">
+		<span>Sitio web</span>
+		<input type="text" name="website" tabindex="-1" autocomplete="off" />
+	</label>
+
+	<button type="submit" data-submit-button>
+		<PaperPlaneIcon aria-hidden="true" />
+		<span data-submit-label>Enviar Mensaje</span>
+	</button>
+
+	<p class="form-note">Tus datos están seguros y no enviamos spam.</p>
+</form>
+
+<script>
+	import { setupLeadForms } from '../utils/lead-form.js';
+
+	setupLeadForms();
+</script>
+
+<style>
+	.quote-form {
+		width: 100%;
+		max-width: 576px;
+		padding: 32px;
+		border: 1px solid var(--color-border-soft);
+		border-radius: 14px;
+		background: var(--color-surface-alt);
+		box-shadow: 0 16px 30px var(--color-shadow-strong);
+	}
+
+	.quote-form h3 {
+		margin: 0 0 26px;
+		color: var(--color-text);
+		font-size: 28px;
+		font-weight: 950;
+		line-height: 1.2;
+	}
+
+	.quote-form label {
+		display: grid;
+		gap: 8px;
+		min-width: 0;
+		margin-bottom: 17px;
+	}
+
+	.quote-form label span {
+		color: var(--color-text-muted);
+		font-size: 14px;
+		font-weight: 850;
+		line-height: 1.2;
+	}
+
+	.form-alert {
+		margin: 0 0 18px;
+		padding: 12px 14px;
+		border-radius: 10px;
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 1.45;
+	}
+
+	.form-alert.is-success {
+		background: color-mix(in srgb, #1f8f5f 12%, var(--color-surface));
+		color: #166344;
+	}
+
+	.form-alert.is-error {
+		background: color-mix(in srgb, #d64545 12%, var(--color-surface));
+		color: #922b2b;
+	}
+
+	.form-row {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 16px;
+		align-items: start;
+	}
+
+	.quote-form input,
+	.quote-form select,
+	.quote-form textarea {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+		border: 1px solid var(--color-border-muted);
+		border-radius: 8px;
+		background: var(--color-surface-alt);
+		color: var(--color-text);
+		font: inherit;
+		font-size: 16px;
+		font-weight: 500;
+		outline: none;
+		transition:
+			background 180ms ease,
+			border-color 180ms ease,
+			box-shadow 180ms ease;
+	}
+
+	.quote-form input,
+	.quote-form select {
+		height: 49px;
+		padding: 0 16px;
+	}
+
+	.quote-form select {
+		appearance: auto;
+		padding-right: 42px;
+	}
+
+	.quote-form textarea {
+		min-height: 122px;
+		resize: vertical;
+		padding: 14px 16px;
+		line-height: 1.5;
+	}
+
+	.quote-form input::placeholder,
+	.quote-form textarea::placeholder {
+		color: var(--color-text-subtle);
+	}
+
+	.quote-form input:focus,
+	.quote-form select:focus,
+	.quote-form textarea:focus {
+		border-color: var(--color-brand);
+		background: var(--color-surface);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand) 16%, transparent);
+	}
+
+	.quote-form button {
+		display: inline-flex;
+		width: 100%;
+		max-width: 100%;
+		min-height: 60px;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		border: 0;
+		border-radius: 7px;
+		background: var(--color-brand);
+		color: var(--color-white);
+		cursor: pointer;
+		font: inherit;
+		font-size: 18px;
+		font-weight: 950;
+		box-shadow: 0 8px 16px color-mix(in srgb, var(--color-brand) 26%, transparent);
+		transition:
+			background 180ms ease,
+			transform 180ms ease;
+	}
+
+	.quote-form button:disabled {
+		cursor: wait;
+		opacity: 0.78;
+		transform: none;
+	}
+
+	.quote-form button:hover,
+	.quote-form button:focus-visible {
+		background: color-mix(in srgb, var(--color-brand) 88%, #000000);
+		transform: translateY(-1px);
+	}
+
+	.quote-form button svg {
+		width: 22px;
+		height: 22px;
+	}
+
+	.form-note {
+		margin: 16px 0 0;
+		color: var(--color-text-subtle);
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1.3;
+		text-align: center;
+	}
+
+	.form-honeypot {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
+	.quote-form[data-scroll-animate] {
+		opacity: 0;
+	}
+
+	.quote-form.is-scroll-visible {
+		opacity: 1;
+	}
+
+	@media (max-width: 980px) {
+		.quote-form {
+			width: 100%;
+			max-width: 640px;
+			margin: 0 auto;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.form-row {
+			grid-template-columns: 1fr;
+			gap: 0;
+		}
+
+		.quote-form {
+			padding: 28px 20px 24px;
+		}
+
+		.quote-form h3 {
+			font-size: 26px;
+		}
+	}
+
+	@media (max-width: 430px) {
+		.quote-form {
+			padding: 24px 18px 22px;
+		}
+
+		.quote-form h3 {
+			font-size: 24px;
+		}
+
+		.quote-form button {
+			min-height: 56px;
+			font-size: 16px;
+		}
+	}
+</style>
