@@ -26,6 +26,20 @@ function clearFormMessage(messageElement) {
 	messageElement.classList.remove('is-success', 'is-error');
 }
 
+function openModal(modalElement, modalCard, modalTitle, modalDescription, status, title, description) {
+	modalTitle.textContent = title;
+	modalDescription.textContent = description;
+	modalCard.classList.remove('is-success', 'is-error');
+	modalCard.classList.add(status === 'success' ? 'is-success' : 'is-error');
+	modalElement.hidden = false;
+	document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modalElement) {
+	modalElement.hidden = true;
+	document.body.style.overflow = '';
+}
+
 export function setupLeadForms() {
 	const forms = document.querySelectorAll('[data-lead-form]');
 
@@ -39,9 +53,26 @@ export function setupLeadForms() {
 		const messageElement = form.querySelector('[data-form-message]');
 		const submitButton = form.querySelector('[data-submit-button]');
 		const submitLabel = form.querySelector('[data-submit-label]');
+		const modalElement = form.parentElement?.querySelector('[data-form-modal]');
+		const modalCard = modalElement?.querySelector('.form-modal__card');
+		const modalTitle = modalElement?.querySelector('[data-form-modal-title]');
+		const modalDescription = modalElement?.querySelector('[data-form-modal-description]');
+		const modalCloseButtons = modalElement?.querySelectorAll('[data-form-modal-close]');
 
 		if (!messageElement || !submitButton || !submitLabel) {
 			return;
+		}
+
+		if (modalElement && modalCard && modalTitle && modalDescription && modalCloseButtons) {
+			modalCloseButtons.forEach((button) => {
+				button.addEventListener('click', () => closeModal(modalElement));
+			});
+
+			document.addEventListener('keydown', (event) => {
+				if (event.key === 'Escape' && !modalElement.hidden) {
+					closeModal(modalElement);
+				}
+			});
 		}
 
 		const defaultButtonText = submitLabel?.textContent || 'Enviar Mensaje';
@@ -59,6 +90,17 @@ export function setupLeadForms() {
 					'success',
 					'Gracias. Recibimos tus datos y te contactaremos pronto para revisar tu proyecto.',
 				);
+				if (modalElement && modalCard && modalTitle && modalDescription) {
+					openModal(
+						modalElement,
+						modalCard,
+						modalTitle,
+						modalDescription,
+						'success',
+						'Mensaje enviado',
+						'Gracias. Recibimos tus datos y te contactaremos pronto para revisar tu proyecto.',
+					);
+				}
 				return;
 			}
 
@@ -97,9 +139,32 @@ export function setupLeadForms() {
 					'success',
 					'Gracias. Recibimos tus datos y te contactaremos pronto para revisar tu proyecto.',
 				);
+				if (modalElement && modalCard && modalTitle && modalDescription) {
+					openModal(
+						modalElement,
+						modalCard,
+						modalTitle,
+						modalDescription,
+						'success',
+						'Mensaje enviado',
+						'Gracias. Recibimos tus datos y te contactaremos pronto para revisar tu proyecto.',
+					);
+				}
 			} catch (error) {
 				console.error('Error saving lead to Supabase:', error);
-				setFormMessage(messageElement, 'error', getErrorMessage(error?.type));
+				const errorMessage = getErrorMessage(error?.type);
+				setFormMessage(messageElement, 'error', errorMessage);
+				if (modalElement && modalCard && modalTitle && modalDescription) {
+					openModal(
+						modalElement,
+						modalCard,
+						modalTitle,
+						modalDescription,
+						'error',
+						'No pudimos enviar tu solicitud',
+						errorMessage,
+					);
+				}
 			} finally {
 				submitButton.disabled = false;
 				submitLabel.textContent = defaultButtonText;

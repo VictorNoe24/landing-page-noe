@@ -1,0 +1,266 @@
+---
+import {
+	BarChartIcon,
+	ClipboardIcon,
+	ExitIcon,
+	HomeIcon,
+	HamburgerMenuIcon,
+	PersonIcon,
+} from '@radix-ui/react-icons';
+---
+
+<aside class="admin-sidebar">
+	<div class="admin-sidebar__top">
+		<div class="admin-sidebar__brand">
+			<img src="/images/logo.png" alt="Noe Flores Avilés" />
+			<div>
+				<p>Panel interno</p>
+				<strong>Noe Flores Avilés</strong>
+			</div>
+		</div>
+
+		<button type="button" class="admin-sidebar__toggle" data-admin-sidebar-toggle aria-label="Contraer panel">
+			<HamburgerMenuIcon aria-hidden="true" />
+		</button>
+	</div>
+
+	<div class="admin-sidebar__section">
+		<p class="admin-sidebar__label">Principal</p>
+		<nav class="admin-sidebar__nav">
+			<a href="/admin-noe" class="admin-sidebar__link is-active">
+				<ClipboardIcon aria-hidden="true" />
+				<span>Contactos</span>
+			</a>
+			<button type="button" class="admin-sidebar__link" disabled>
+				<HomeIcon aria-hidden="true" />
+				<span>Dashboard</span>
+			</button>
+			<button type="button" class="admin-sidebar__link" disabled>
+				<PersonIcon aria-hidden="true" />
+				<span>Clientes</span>
+			</button>
+			<button type="button" class="admin-sidebar__link" disabled>
+				<BarChartIcon aria-hidden="true" />
+				<span>Reportes</span>
+			</button>
+		</nav>
+	</div>
+
+	<div class="admin-sidebar__footer">
+		<p class="admin-sidebar__session" data-admin-user-email>
+			Sin sesión
+		</p>
+		<button type="button" class="admin-sidebar__logout" data-admin-logout>
+			<ExitIcon aria-hidden="true" />
+			<span>Cerrar sesión</span>
+		</button>
+	</div>
+</aside>
+
+<style>
+	.admin-sidebar {
+		position: sticky;
+		top: 0;
+		display: flex;
+		height: 100vh;
+		flex-direction: column;
+		padding: 24px 18px;
+		border-right: 1px solid color-mix(in srgb, var(--color-brand) 8%, var(--color-border-soft));
+		background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+		backdrop-filter: blur(12px);
+		overflow-y: auto;
+	}
+
+	.admin-sidebar__top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	.admin-sidebar__brand {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		padding: 6px 8px 18px;
+	}
+
+	.admin-sidebar__toggle {
+		display: inline-flex;
+		width: 42px;
+		height: 42px;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid var(--color-border-muted);
+		border-radius: 12px;
+		background: var(--color-surface);
+		color: var(--color-text);
+		cursor: pointer;
+	}
+
+	.admin-sidebar__toggle svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	.admin-sidebar__brand img {
+		width: 54px;
+		height: 54px;
+		object-fit: contain;
+	}
+
+	.admin-sidebar__brand p {
+		margin: 0;
+		color: var(--color-text-subtle);
+		font-size: 12px;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.admin-sidebar__brand strong {
+		display: block;
+		margin-top: 4px;
+		color: var(--color-text);
+		font-size: 16px;
+		font-weight: 950;
+	}
+
+	.admin-sidebar__section {
+		margin-top: 10px;
+	}
+
+	.admin-sidebar__label {
+		margin: 0 0 10px;
+		padding: 0 10px;
+		color: var(--color-text-subtle);
+		font-size: 12px;
+		font-weight: 900;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+
+	.admin-sidebar__nav {
+		display: grid;
+		gap: 8px;
+	}
+
+	.admin-sidebar__link {
+		display: flex;
+		min-height: 48px;
+		width: 100%;
+		align-items: center;
+		gap: 12px;
+		padding: 0 14px;
+		border: 1px solid transparent;
+		border-radius: 16px;
+		background: transparent;
+		color: var(--color-text-muted);
+		cursor: pointer;
+		font: inherit;
+		font-size: 15px;
+		font-weight: 800;
+		text-decoration: none;
+	}
+
+	.admin-sidebar__link svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	.admin-sidebar__link.is-active {
+		background: linear-gradient(135deg, var(--color-brand) 0%, color-mix(in srgb, var(--color-brand) 88%, #0b5560) 100%);
+		color: var(--color-white);
+		box-shadow: 0 16px 28px color-mix(in srgb, var(--color-brand) 22%, transparent);
+	}
+
+	.admin-sidebar__link:disabled {
+		cursor: not-allowed;
+		opacity: 0.6;
+	}
+
+	.admin-sidebar__footer {
+		margin-top: auto;
+		display: grid;
+		gap: 12px;
+		padding: 24px 8px 0;
+	}
+
+	.admin-sidebar__session {
+		margin: 0;
+		padding: 12px 14px;
+		border-radius: 14px;
+		background: var(--color-surface-alt);
+		color: var(--color-brand);
+		font-size: 13px;
+		font-weight: 800;
+		line-height: 1.5;
+		word-break: break-word;
+	}
+
+	.admin-sidebar__logout {
+		display: inline-flex;
+		min-height: 48px;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		border: 1px solid var(--color-border-muted);
+		border-radius: 16px;
+		background: var(--color-surface);
+		color: var(--color-text);
+		cursor: pointer;
+		font: inherit;
+		font-size: 15px;
+		font-weight: 900;
+	}
+
+	.admin-sidebar__logout svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	:global([data-sidebar-collapsed='true'] .admin-sidebar) {
+		padding-inline: 12px;
+	}
+
+	:global([data-sidebar-collapsed='true'] .admin-sidebar__brand div),
+	:global([data-sidebar-collapsed='true'] .admin-sidebar__label),
+	:global([data-sidebar-collapsed='true'] .admin-sidebar__link span),
+	:global([data-sidebar-collapsed='true'] .admin-sidebar__session),
+	:global([data-sidebar-collapsed='true'] .admin-sidebar__logout span) {
+		display: none;
+	}
+
+	:global([data-sidebar-collapsed='true'] .admin-sidebar__brand) {
+		justify-content: center;
+		padding-inline: 0;
+	}
+
+	:global([data-sidebar-collapsed='true'] .admin-sidebar__nav) {
+		justify-items: center;
+	}
+
+	:global([data-sidebar-collapsed='true'] .admin-sidebar__link),
+	:global([data-sidebar-collapsed='true'] .admin-sidebar__logout) {
+		width: 52px;
+		min-width: 52px;
+		padding-inline: 0;
+		justify-content: center;
+	}
+
+	:global([data-sidebar-collapsed='true'] .admin-sidebar__footer) {
+		justify-items: center;
+	}
+
+	@media (max-width: 980px) {
+		.admin-sidebar {
+			position: relative;
+			min-height: auto;
+			height: auto;
+			padding: 18px 14px;
+			border-right: 0;
+			border-bottom: 1px solid color-mix(in srgb, var(--color-brand) 8%, var(--color-border-soft));
+			overflow: visible;
+		}
+	}
+</style>
